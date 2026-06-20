@@ -453,38 +453,34 @@ img {
     gap: 3rem;
   }
   
-  /* Hero section mobile full-bleed overlay layout */
+  /* Hero section mobile compact layout */
   .hero-section {
     position: relative !important;
-    height: 100vh !important;
-    min-height: 560px !important;
-    padding-top: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    color: #FFFFFF !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding-top: calc(var(--header-height) + 1.5rem) !important;
+    padding-bottom: 2.5rem !important;
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+    display: block !important;
   }
   
   .hero-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(18, 18, 18, 0.45) 0%, rgba(18, 18, 18, 0.8) 100%);
-    z-index: 2;
+    display: none !important; /* remove dark overlay gradient */
   }
 
   .hero-section .container {
-    position: static !important; /* lets absolute background fill hero-section directly */
+    position: relative !important;
     z-index: 3;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     align-items: flex-start !important;
     text-align: left !important;
-    height: 100% !important;
+    height: auto !important;
     width: 100% !important;
-    padding-top: calc(var(--header-height) + 1.5rem) !important;
-    padding-bottom: 2rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 
   .hero-content {
@@ -493,14 +489,14 @@ img {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    max-width: 580px !important;
+    max-width: 100% !important;
     width: 100% !important;
   }
 
   .hero-title {
-    font-size: 2.5rem !important;
-    color: #FFFFFF !important;
-    margin-bottom: 1rem !important;
+    font-size: 2.25rem !important;
+    color: var(--color-text-primary) !important;
+    margin-bottom: 0.75rem !important;
     line-height: 1.25 !important;
   }
 
@@ -509,54 +505,70 @@ img {
   }
 
   .hero-section .hero-description {
-    color: rgba(244, 241, 234, 0.85) !important;
+    color: var(--color-text-secondary) !important;
     font-size: 0.95rem !important;
     margin-bottom: 1.5rem !important;
     max-width: 100% !important;
     line-height: 1.6 !important;
   }
 
+  .hero-buttons {
+    display: flex !important;
+    gap: 1.25rem !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+  }
+
   .hero-image-wrapper {
-    position: absolute !important;
-    inset: 0 !important;
-    width: auto !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    inset: auto !important;
+    width: 100% !important;
     height: auto !important;
-    z-index: 1 !important;
+    z-index: 2 !important;
+    display: block !important;
+    margin-bottom: 1.5rem !important;
   }
 
   .hero-image-container {
     width: 100% !important;
-    height: 100% !important;
-    border: none !important;
-    box-shadow: none !important;
+    height: auto !important;
+    aspect-ratio: 16/10 !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
+    overflow: hidden !important;
   }
 
   .hero-image-container img {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    filter: blur(2px) !important;
-    transform: scale(1.03) !important; /* scales up slightly to hide blurred edges */
+    filter: none !important;
+    transform: none !important;
   }
 
   /* Make floating stats badge look clean without grey background strip */
   .hero-floating-badge {
-    position: absolute !important;
-    left: 2rem !important;
-    bottom: 2.5rem !important;
-    z-index: 5 !important;
-    background-color: transparent !important;
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: var(--color-bg-secondary) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    border: none !important;
-    padding: 0 !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    padding: 0.85rem 1.25rem !important;
     box-shadow: none !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 1rem !important;
+    gap: 1.25rem !important;
     margin: 0 !important;
-    max-width: calc(100% - 4rem) !important;
+    z-index: 5 !important;
   }
 
   .hero-floating-badge h3 {
@@ -572,36 +584,46 @@ img {
   }
 
   .hero-floating-badge h4 {
-    color: #FFFFFF !important;
+    color: var(--color-text-primary) !important;
     margin-bottom: 0.15rem !important;
     font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
   }
 
   .hero-floating-badge p {
     margin-bottom: 0 !important;
-    font-size: 0.8rem !important;
-    color: rgba(244, 241, 234, 0.75) !important;
+    font-size: 0.78rem !important;
+    color: var(--color-text-secondary) !important;
   }
 
   /* CTA Buttons styling for dark contrast */
   .hero-section .btn-secondary {
-    color: #FFFFFF !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-    padding: 0.85rem 1.75rem !important;
+    color: var(--color-text-primary) !important;
+    border-color: var(--color-border) !important;
+    background-color: var(--color-bg-secondary) !important;
+    padding: 0.85rem 1.5rem !important;
     font-size: 0.8rem !important;
+    flex: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
   }
 
   .hero-section .btn-primary {
-    padding: 0.85rem 1.75rem !important;
+    padding: 0.85rem 1.5rem !important;
     font-size: 0.8rem !important;
+    flex: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
   }
 
-  /* Force glassmorphic navigation header on mobile for readable contrast */
+  /* Force solid navigation header on mobile to prevent scrolling overlaps */
   .navbar-header {
     border-bottom: 1px solid var(--color-border) !important;
-    background-color: var(--color-glass) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
+    background-color: var(--color-bg-primary) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
   
   /* Footer responsive grid */
@@ -612,6 +634,19 @@ img {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-height: 60px !important;
+  }
+  .navbar-header {
+    height: 60px !important;
+  }
+  .logo-text {
+    font-size: 1.25rem !important;
+  }
+  .logo-text span {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.28em !important;
+  }
   .desktop-nav {
     display: none !important;
   }
@@ -622,41 +657,78 @@ img {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
+  .section-title {
+    font-size: 1.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .page-title {
+    font-size: 2.0rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .section-subtitle {
+    font-size: 0.9rem !important;
+    margin-bottom: 2rem !important;
+  }
+  .section {
+    padding: 3.5rem 0 !important;
+  }
 }
 
 @media (max-width: 640px) {
+  body {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+  }
+  .container {
+    padding: 0 1rem !important;
+  }
+  .section {
+    padding: 2.75rem 0 !important;
+  }
   .grid-3-col, .grid-4-col {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
   .hero-title {
-    font-size: 2.1rem !important;
-    margin-bottom: 0.75rem !important;
+    font-size: 1.85rem !important;
+    margin-bottom: 0.65rem !important;
   }
   .hero-section .hero-description {
-    font-size: 0.9rem !important;
+    font-size: 0.86rem !important;
     margin-bottom: 1.25rem !important;
   }
   .hero-section {
     height: auto !important;
-    min-height: 100vh !important;
-    padding-bottom: 3rem !important;
+    min-height: auto !important;
+    padding-bottom: 2rem !important;
+  }
+  .hero-buttons {
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .hero-section .btn-primary, .hero-section .btn-secondary {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.76rem !important;
   }
   .hero-floating-badge {
-    position: absolute !important;
-    left: 1.5rem !important;
-    bottom: 2rem !important;
-    max-width: calc(100% - 3rem) !important;
-    padding: 0 !important;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    background-color: var(--color-bg-secondary) !important;
+    border: 1px solid var(--color-border) !important;
+    gap: 1rem !important;
   }
   .hero-floating-badge h3 {
     font-size: 1.6rem !important;
   }
+  .hero-floating-badge h4 {
+    font-size: 0.75rem !important;
+  }
   .hero-floating-badge p {
-    font-size: 0.7rem !important;
+    font-size: 0.72rem !important;
   }
   .testimonial-card-wrapper {
     padding: 2.5rem 1.5rem !important;
@@ -666,6 +738,47 @@ img {
   }
   .checklist-card-wrapper {
     padding: 2.5rem 1.5rem !important;
+  }
+  
+  /* Compact service card layout overrides */
+  .service-card {
+    padding: 1.5rem 1.25rem !important;
+  }
+  .service-card > div:first-of-type {
+    width: 48px !important;
+    height: 48px !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .service-card > div:first-of-type svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .service-card h3 {
+    font-size: 1.15rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .service-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+  }
+  
+  /* Compact stats section overrides */
+  .stats-section {
+    padding: 2rem 0 !important;
+  }
+  .stat-item {
+    padding: 0.75rem 0 !important;
+    border-bottom: 1px solid var(--color-border) !important;
+  }
+  .stat-item:last-child {
+    border-bottom: none !important;
+  }
+  .stat-item h2 {
+    font-size: 2.0rem !important;
+  }
+  .stat-item p {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.1em !important;
   }
 }
 
