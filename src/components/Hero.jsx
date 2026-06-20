@@ -29,10 +29,20 @@ export default function Hero() {
               <ArrowRight size={18} />
             </Link>
             <Link 
-              to="/about" 
+              to="/#contact" 
               className="btn-secondary"
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    window.history.pushState(null, null, '#contact');
+                  }
+                }
+              }}
             >
-              Our Philosophy
+              Book Consultation
             </Link>
           </div>
         </div>
