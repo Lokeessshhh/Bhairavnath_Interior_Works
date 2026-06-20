@@ -41,14 +41,7 @@ export default function Process() {
         </div>
 
         {/* Process Timeline Grid */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '2.5rem',
-            position: 'relative'
-          }}
-        >
+        <div className="grid-4-col" style={{ position: 'relative' }}>
           {steps.map((step, index) => (
             <div 
               key={index}

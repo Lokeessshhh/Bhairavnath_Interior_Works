@@ -164,9 +164,13 @@ export default function Navbar() {
           display: mobileMenuOpen ? 'flex' : 'none',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
+          paddingTop: '3rem',
+          paddingBottom: '3rem',
+          overflowY: 'auto',
           gap: '2.5rem',
-          padding: '2rem',
+          paddingLeft: '2rem',
+          paddingRight: '2rem',
           transition: 'var(--transition-smooth)',
           boxShadow: '0 10px 30px rgba(0,0,0,0.05)'
         }}

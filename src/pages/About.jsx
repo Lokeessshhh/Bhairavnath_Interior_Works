@@ -15,17 +15,7 @@ export default function About() {
       <section className="section" style={{ paddingBottom: '4rem' }}>
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Our Heritage</span>
-          <h1 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontSize: '3.5rem', 
-              fontWeight: '400', 
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '1.5rem',
-              maxWidth: '800px'
-            }}
-          >
+          <h1 className="page-title" style={{ maxWidth: '800px' }}>
             The Story of Roshanlal Lohar & <br />Bhairavnath Interior Works
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -38,14 +28,7 @@ export default function About() {
       {/* Main Narrative Split */}
       <section className="section" style={{ paddingTop: '2rem', paddingBottom: '6rem' }}>
         <div className="container">
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.1fr 1fr',
-              gap: '6rem',
-              alignItems: 'center'
-            }}
-          >
+          <div className="grid-split-about">
             {/* Left Narrative */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
               <h2 

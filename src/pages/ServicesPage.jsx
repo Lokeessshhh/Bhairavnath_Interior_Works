@@ -69,16 +69,7 @@ export default function ServicesPage() {
       <section className="section" style={{ paddingBottom: '3rem' }}>
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">What We Offer</span>
-          <h1 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontSize: '3.5rem', 
-              fontWeight: '400', 
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '1.5rem'
-            }}
-          >
+          <h1 className="page-title">
             Services & Property Specialties
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -90,7 +81,7 @@ export default function ServicesPage() {
 
       {/* Tab Navigation */}
       <section style={{ paddingBottom: '4rem' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
           <button
             onClick={() => setActiveTab('residential')}
             style={{
@@ -140,13 +131,7 @@ export default function ServicesPage() {
       {/* Services Grid Content */}
       <section style={{ paddingBottom: '6rem' }}>
         <div className="container">
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '2.5rem'
-            }}
-          >
+          <div className="grid-2-col">
             {(activeTab === 'residential' ? residentialServices : commercialServices).map((service, index) => (
               <div 
                 key={index}
@@ -197,13 +182,7 @@ export default function ServicesPage() {
             <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '0.5rem' }} />
           </div>
 
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '3rem'
-            }}
-          >
+          <div className="grid-3-col">
             {materialsList.map((material, index) => (
               <div 
                 key={index}

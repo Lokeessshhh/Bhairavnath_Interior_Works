@@ -43,13 +43,7 @@ export default function Services() {
           />
         </div>
 
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '2rem'
-          }}
-        >
+        <div className="grid-4-col">
           {servicesData.map((service, index) => (
             <div 
               key={index}

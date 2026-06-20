@@ -19,21 +19,12 @@ export default function Stats() {
       }}
     >
       <div className="container">
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '2rem',
-            textAlign: 'center'
-          }}
-        >
+        <div className="grid-4-col" style={{ textAlign: 'center' }}>
           {statsData.map((stat, index) => (
             <div 
               key={index}
               className="stat-item"
               style={{
-                borderRight: index < 3 ? '1px solid var(--color-border)' : 'none',
-                paddingRight: '1rem',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',

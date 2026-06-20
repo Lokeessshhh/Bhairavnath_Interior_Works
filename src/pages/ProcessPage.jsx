@@ -58,16 +58,7 @@ export default function ProcessPage() {
       <section className="section" style={{ paddingBottom: '3.5rem' }}>
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">How We Work</span>
-          <h1 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontSize: '3.5rem', 
-              fontWeight: '400', 
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '1.5rem'
-            }}
-          >
+          <h1 className="page-title">
             Our Work Process
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -80,13 +71,7 @@ export default function ProcessPage() {
       {/* 6 Steps Timeline */}
       <section style={{ paddingBottom: '6rem' }}>
         <div className="container">
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '3rem'
-            }}
-          >
+          <div className="grid-3-col">
             {steps.map((step, index) => (
               <div 
                 key={index}
@@ -163,14 +148,7 @@ export default function ProcessPage() {
       {/* Quality Standards Tracker */}
       <section className="section" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
         <div className="container">
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1.2fr',
-              gap: '6rem',
-              alignItems: 'center'
-            }}
-          >
+          <div className="grid-split-about">
             {/* Left: Headline info */}
             <div>
               <span className="section-tag">Quality Assurance</span>
@@ -199,12 +177,10 @@ export default function ProcessPage() {
 
             {/* Right: Checkmarks Grid */}
             <div 
+              className="grid-2-col checklist-card-wrapper"
               style={{
                 backgroundColor: 'var(--color-bg-primary)',
                 border: '1px solid var(--color-border)',
-                padding: '4rem 3.5rem',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
                 gap: '2rem',
                 boxShadow: '0 15px 30px rgba(0,0,0,0.02)'
               }}

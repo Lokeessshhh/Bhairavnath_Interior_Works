@@ -104,12 +104,12 @@ export default function Testimonials() {
         </div>
 
         <div 
+          className="testimonial-card-wrapper"
           style={{
             maxWidth: '850px',
             margin: '0 auto 3rem',
             backgroundColor: 'var(--color-bg-secondary)',
             border: '1px solid var(--color-border)',
-            padding: '4rem',
             position: 'relative',
             boxShadow: '0 15px 30px rgba(28, 25, 23, 0.02)'
           }}

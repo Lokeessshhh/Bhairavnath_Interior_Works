@@ -157,16 +157,7 @@ export default function BlogPostPage() {
             </span>
           </div>
 
-          <h1 
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '3rem',
-              fontWeight: '400',
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '2rem'
-            }}
-          >
+          <h1 className="page-title" style={{ fontSize: '2.75rem', lineHeight: '1.3' }}>
             {article.title}
           </h1>
         </header>
@@ -175,7 +166,7 @@ export default function BlogPostPage() {
         <div 
           style={{
             width: '100%',
-            height: '450px',
+            aspectRatio: '16/9',
             overflow: 'hidden',
             border: '1px solid var(--color-border)',
             boxShadow: '0 20px 40px rgba(0,0,0,0.03)',

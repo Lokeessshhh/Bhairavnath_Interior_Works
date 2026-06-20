@@ -23,14 +23,7 @@ export default function ExecutionStandards() {
   return (
     <section id="philosophy" className="section" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
       <div className="container">
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1.1fr',
-            gap: '5rem',
-            alignItems: 'center'
-          }}
-        >
+        <div className="grid-split-about">
           {/* Left Column: Premium Interior visual */}
           <div 
             style={{

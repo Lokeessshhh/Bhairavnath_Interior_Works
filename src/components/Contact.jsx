@@ -49,14 +49,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
       <div className="container">
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1.2fr',
-            gap: '5rem',
-            alignItems: 'flex-start'
-          }}
-        >
+        <div className="grid-split-about">
           {/* Left: Contact Info */}
           <div>
             <span className="section-tag">Contact Us</span>
@@ -141,10 +134,10 @@ export default function Contact() {
 
           {/* Right: Booking Form Container */}
           <div 
+            className="contact-form-container"
             style={{
               backgroundColor: 'var(--color-bg-primary)',
               border: '1px solid var(--color-border)',
-              padding: '4rem 3.5rem',
               boxShadow: '0 20px 45px rgba(28, 25, 23, 0.03)'
             }}
           >

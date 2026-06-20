@@ -79,16 +79,7 @@ export default function TestimonialsPage() {
       <section className="section" style={{ paddingBottom: '3rem' }}>
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Client Feedback</span>
-          <h1 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontSize: '3.5rem', 
-              fontWeight: '400', 
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '1.5rem'
-            }}
-          >
+          <h1 className="page-title">
             Client Reviews & Testimonials
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -101,14 +92,7 @@ export default function TestimonialsPage() {
       {/* Review grid and form split */}
       <section className="section" style={{ paddingTop: '1rem', paddingBottom: '6rem' }}>
         <div className="container">
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.3fr 1fr',
-              gap: '5rem',
-              alignItems: 'flex-start'
-            }}
-          >
+          <div className="grid-split-2">
             {/* Left: Reviews Wall */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: '400', marginBottom: '1rem' }}>
@@ -185,10 +169,10 @@ export default function TestimonialsPage() {
 
             {/* Right: Review Form */}
             <div 
+              className="contact-form-container"
               style={{
                 backgroundColor: 'var(--color-bg-secondary)',
                 border: '1px solid var(--color-border)',
-                padding: '4rem 3.5rem',
                 boxShadow: '0 20px 45px rgba(28, 25, 23, 0.02)',
                 position: 'sticky',
                 top: 'calc(var(--header-height) + 2rem)'

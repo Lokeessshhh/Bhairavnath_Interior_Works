@@ -59,13 +59,7 @@ export default function DesignJournal() {
         </div>
 
         {/* Articles Grid */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '2.5rem'
-          }}
-        >
+        <div className="grid-3-col">
           {articles.map(article => (
             <Link 
               to={`/blog/${article.id}`}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import projectsData from '../data/cloudinaryImages.json';
 
 const getOptimizedUrl = (url, width = 800) => {
@@ -12,6 +12,27 @@ export default function ProjectsPage() {
   const [sliderPos, setSliderPos] = useState(50);
   const [activeFilter, setActiveFilter] = useState('All');
   const [visibleCount, setVisibleCount] = useState(18);
+  const containerRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(950);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateWidth = () => {
+      setContainerWidth(containerRef.current.offsetWidth);
+    };
+    updateWidth();
+    
+    const resizeObserver = new ResizeObserver(() => {
+      updateWidth();
+    });
+    resizeObserver.observe(containerRef.current);
+
+    window.addEventListener('resize', updateWidth);
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, []);
 
   const handleSliderChange = (e) => {
     setSliderPos(e.target.value);
@@ -53,16 +74,7 @@ export default function ProjectsPage() {
       <section className="section" style={{ paddingBottom: '3rem' }}>
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Showcase</span>
-          <h1 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontSize: '3.5rem', 
-              fontWeight: '400', 
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '1.5rem'
-            }}
-          >
+          <h1 className="page-title">
             Spaces We Have Created
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -86,10 +98,11 @@ export default function ProjectsPage() {
 
           {/* Interactive Before/After Component */}
           <div 
+            ref={containerRef}
             style={{
               position: 'relative',
               width: '100%',
-              height: '520px',
+              aspectRatio: '16/10',
               overflow: 'hidden',
               border: '1px solid var(--color-border)',
               boxShadow: '0 25px 50px rgba(0,0,0,0.06)',
@@ -127,8 +140,8 @@ export default function ProjectsPage() {
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: '950px', // Matches container maxWidth
-                  height: '520px',
+                  width: `${containerWidth}px`, // Matches parent container width dynamically
+                  height: '100%',
                   objectFit: 'cover',
                   pointerEvents: 'none'
                 }}
@@ -246,15 +259,7 @@ export default function ProjectsPage() {
           </div>
 
           {/* Bento Grid Layout wrapper */}
-          <div 
-            className="bento-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gridAutoRows: '220px',
-              gap: '2rem'
-            }}
-          >
+          <div className="bento-grid">
             {displayedProjects.map(project => {
               // Map bento sizes to grid column/row spans
               let gridStyle = {};

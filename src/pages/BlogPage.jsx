@@ -168,16 +168,7 @@ export default function BlogPage() {
       <section className="section" style={{ paddingBottom: '3rem' }}>
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Nesta Journal</span>
-          <h1 
-            style={{ 
-              fontFamily: 'var(--font-serif)', 
-              fontSize: '3.5rem', 
-              fontWeight: '400', 
-              color: 'var(--color-text-primary)',
-              lineHeight: '1.2',
-              marginBottom: '1.5rem'
-            }}
-          >
+          <h1 className="page-title">
             Mumbai Interior Insights
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -190,14 +181,7 @@ export default function BlogPage() {
       {/* Main Articles List & Forms grid */}
       <section className="section" style={{ paddingTop: '1rem', paddingBottom: '6rem' }}>
         <div className="container">
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.4fr 1fr',
-              gap: '5rem',
-              alignItems: 'flex-start'
-            }}
-          >
+          <div className="grid-split-blog">
             {/* Left: Articles List */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -341,15 +325,7 @@ export default function BlogPage() {
                 {articles.map(article => (
                   <article 
                     key={article.id}
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: '1.2fr 2fr',
-                      gap: '2rem',
-                      border: '1px solid var(--color-border)',
-                      backgroundColor: 'var(--color-bg-secondary)',
-                      padding: '1.5rem',
-                      alignItems: 'center'
-                    }}
+                    className="blog-post-card"
                   >
                     {/* Image */}
                     <div style={{ height: '200px', overflow: 'hidden', border: '1px solid var(--color-border)' }}>
