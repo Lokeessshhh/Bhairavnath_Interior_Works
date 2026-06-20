@@ -453,16 +453,18 @@ img {
     gap: 3rem;
   }
   
-  /* Hero section mobile compact layout */
+  /* Hero section mobile viewport height locked layout */
   .hero-section {
     position: relative !important;
-    height: auto !important;
-    min-height: auto !important;
-    padding-top: calc(var(--header-height) + 1.5rem) !important;
-    padding-bottom: 2.5rem !important;
+    height: 100vh !important;
+    min-height: 560px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     background-color: var(--color-bg-primary) !important;
     color: var(--color-text-primary) !important;
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
   
   .hero-section::before {
@@ -474,13 +476,14 @@ img {
     z-index: 3;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
     align-items: flex-start !important;
     text-align: left !important;
     height: auto !important;
     width: 100% !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
+    padding-top: calc(var(--header-height) + 1rem) !important;
+    padding-bottom: 1.5rem !important;
+    gap: 1.5rem !important; /* controlled gap between sections */
   }
 
   .hero-content {
@@ -512,13 +515,6 @@ img {
     line-height: 1.6 !important;
   }
 
-  .hero-buttons {
-    display: flex !important;
-    gap: 1.25rem !important;
-    margin-bottom: 2rem !important;
-    width: 100% !important;
-  }
-
   .hero-image-wrapper {
     position: relative !important;
     top: auto !important;
@@ -528,7 +524,7 @@ img {
     height: auto !important;
     z-index: 2 !important;
     display: block !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
   }
 
   .hero-image-container {
@@ -691,20 +687,25 @@ img {
   }
   .hero-title {
     font-size: 1.85rem !important;
-    margin-bottom: 0.65rem !important;
+    margin-bottom: 0.5rem !important;
   }
   .hero-section .hero-description {
-    font-size: 0.86rem !important;
-    margin-bottom: 1.25rem !important;
+    font-size: 0.84rem !important;
+    margin-bottom: 1rem !important;
   }
   .hero-section {
-    height: auto !important;
-    min-height: auto !important;
-    padding-bottom: 2rem !important;
+    height: 100vh !important;
+    min-height: 560px !important;
+    padding-bottom: 0 !important;
+  }
+  .hero-section .container {
+    padding-top: calc(var(--header-height) + 0.75rem) !important;
+    padding-bottom: 1.25rem !important;
+    gap: 1.25rem !important;
   }
   .hero-buttons {
     gap: 0.75rem !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 0 !important;
   }
   .hero-section .btn-primary, .hero-section .btn-secondary {
     padding: 0.75rem 1rem !important;
@@ -716,7 +717,7 @@ img {
     bottom: auto !important;
     max-width: 100% !important;
     width: 100% !important;
-    padding: 0.75rem 1rem !important;
+    padding: 0.65rem 0.85rem !important;
     background-color: var(--color-bg-secondary) !important;
     border: 1px solid var(--color-border) !important;
     gap: 1rem !important;
