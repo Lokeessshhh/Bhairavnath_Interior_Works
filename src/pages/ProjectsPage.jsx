@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import projectsData from '../data/cloudinaryImages.json';
 
+const getOptimizedUrl = (url, width = 800) => {
+  if (url && url.includes('cloudinary.com') && url.includes('/upload/')) {
+    return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
+  }
+  return url;
+};
+
 export default function ProjectsPage() {
   const [sliderPos, setSliderPos] = useState(50);
   const [activeFilter, setActiveFilter] = useState('All');
@@ -289,7 +296,7 @@ export default function ProjectsPage() {
                 >
                   {/* Photo Layer */}
                   <img 
-                    src={project.image} 
+                    src={getOptimizedUrl(project.image, project.size === 'wide' ? 1000 : project.size === 'tall' ? 800 : 600)} 
                     alt={project.title} 
                     className="bento-img"
                     style={{

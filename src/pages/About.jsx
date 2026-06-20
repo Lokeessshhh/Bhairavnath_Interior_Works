@@ -1,6 +1,13 @@
 import React from 'react';
 import aboutPhotos from '../data/aboutPhotos.json';
 
+const getOptimizedUrl = (url, width = 600) => {
+  if (url && url.includes('cloudinary.com') && url.includes('/upload/')) {
+    return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
+  }
+  return url;
+};
+
 export default function About() {
   return (
     <main style={{ paddingTop: 'calc(var(--header-height) + 2rem)', backgroundColor: 'var(--color-bg-primary)' }}>
@@ -172,7 +179,7 @@ export default function About() {
               >
                 <div style={{ overflow: 'hidden', height: '280px', border: '1px solid var(--color-border)' }}>
                   <img 
-                    src={photo.image} 
+                    src={getOptimizedUrl(photo.image, 600)} 
                     alt={photo.title || 'Recognition Ceremony'} 
                     style={{
                       width: '100%',
