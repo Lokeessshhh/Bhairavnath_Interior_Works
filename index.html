@@ -4,8 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preload" as="image" href="/assets/hero_mobile.webp" media="(max-width: 768px)" fetchpriority="high">
-    <link rel="preload" as="image" href="/assets/hero_desktop.webp" media="(min-width: 769px)" fetchpriority="high">
+    <script>
+      if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '') {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.fetchPriority = 'high';
+        if (window.innerWidth <= 768) {
+          link.href = '/assets/hero_mobile.webp';
+        } else {
+          link.href = '/assets/hero_desktop.webp';
+        }
+        document.head.appendChild(link);
+      }
+    </script>
     <meta name="description" content="Bhairavnath Interior Works offers premium luxury interior design and turnkey execution services in Mumbai. Over 20+ years of carpentry and modular craftsmanship." />
     <title>Bhairavnath Interior Works | Premium Luxury Interior Design</title>
     <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
@@ -50,19 +62,17 @@
             </div>
           </div>
           <div class="hero-image-wrapper">
-            <div class="hero-image-container">
-              <picture>
-                <source media="(max-width: 768px)" srcset="/assets/hero_mobile.webp">
-                <img 
-                  src="/assets/hero_desktop.webp" 
-                  alt="Warm minimalist luxury living room" 
-                  class="hero-img"
-                  fetchpriority="high"
-                  width="1200"
-                  height="800"
-                />
-              </picture>
+            <div class="hero-image-container" id="hero-img-shell-container">
+              <!-- Prerendered image dynamically inserted here to prevent downloads on sub-routes -->
             </div>
+            <script>
+              if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '') {
+                const container = document.getElementById('hero-img-shell-container');
+                if (container) {
+                  container.innerHTML = '<picture><source media="(max-width: 768px)" srcset="/assets/hero_mobile.webp"><img src="/assets/hero_desktop.webp" alt="Warm minimalist luxury living room" class="hero-img" fetchpriority="high" width="1200" height="800" /></picture>';
+                }
+              }
+            </script>
           </div>
         </div>
       </section>
