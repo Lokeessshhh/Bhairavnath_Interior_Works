@@ -77,7 +77,7 @@ export default function Testimonials() {
     return (
       <section id="testimonials" className="section" style={{ backgroundColor: 'var(--color-bg-primary)', borderTop: '1px solid var(--color-border)' }}>
         <div className="container" style={{ textAlign: 'center', padding: '4rem 0' }}>
-          <p style={{ color: 'var(--color-text-secondary)' }}>Loading client reviews...</p>
+          <p style={{ color: '#5C5652' }}>Loading client reviews...</p>
         </div>
       </section>
     );
@@ -118,7 +118,7 @@ export default function Testimonials() {
             <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
               <p style={{ 
                 fontSize: '1.15rem', 
-                color: 'var(--color-text-secondary)', 
+                color: '#5C5652', 
                 fontFamily: 'var(--font-serif)',
                 marginBottom: '1rem',
                 fontStyle: 'italic'
@@ -193,7 +193,7 @@ export default function Testimonials() {
                   <span 
                     style={{
                       fontSize: '0.8rem',
-                      color: 'var(--color-text-secondary)',
+                      color: '#5C5652',
                       letterSpacing: '0.05em'
                     }}
                   >
@@ -311,7 +311,7 @@ export default function Testimonials() {
               {submitError && <div style={{ color: 'red', fontSize: '0.85rem' }}>{submitError}</div>}
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)' }}>Your Name *</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#5C5652' }}>Your Name *</label>
                 <input 
                   type="text" 
                   required
@@ -323,7 +323,7 @@ export default function Testimonials() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)' }}>Role / Project Location</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#5C5652' }}>Role / Project Location</label>
                 <input 
                   type="text" 
                   value={formState.role}
@@ -334,7 +334,7 @@ export default function Testimonials() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)' }}>Rating *</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#5C5652' }}>Rating *</label>
                 <div style={{ display: 'flex', gap: '6px' }}>
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
@@ -346,7 +346,7 @@ export default function Testimonials() {
                       <Star 
                         size={22} 
                         fill={star <= formState.rating ? 'var(--color-accent)' : 'none'} 
-                        stroke={star <= formState.rating ? 'none' : 'var(--color-text-secondary)'} 
+                        stroke={star <= formState.rating ? 'none' : '#5C5652'} 
                       />
                     </button>
                   ))}
@@ -354,7 +354,7 @@ export default function Testimonials() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-secondary)' }}>Review *</label>
+                <label style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: '#5C5652' }}>Review *</label>
                 <textarea 
                   required
                   rows="4"
