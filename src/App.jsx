@@ -6,9 +6,9 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Page Imports
 import Home from './pages/Home';
+import About from './pages/About';
 
 // Lazy-loaded Page Imports
-const About = lazy(() => import('./pages/About'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
 const ProcessPage = lazy(() => import('./pages/ProcessPage'));

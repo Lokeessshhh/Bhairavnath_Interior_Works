@@ -89,7 +89,7 @@ export default function About() {
                 <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--color-text-primary)', lineHeight: '1.5' }}>
                   "Machines can cut the board, but only a carpenter's hand knows if the wood is aligned with the soul of the home."
                 </p>
-                <span style={{ fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-accent)', display: 'block', marginTop: '0.5rem' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-accent-contrast)', display: 'block', marginTop: '0.5rem' }}>
                   — Roshanlal Lohar
                 </span>
               </div>
@@ -100,21 +100,22 @@ export default function About() {
               style={{
                 position: 'relative',
                 width: '100%',
+                aspectRatio: '4/5',
                 border: '1px solid var(--color-border)',
                 boxShadow: '0 20px 40px rgba(28, 25, 23, 0.04)',
                 overflow: 'hidden'
               }}
             >
               <img 
-                src="/assets/roshanlal_lohar.png" 
+                src="/assets/roshanlal_lohar.webp" 
                 alt="Roshanlal Lohar craftsmanship" 
                 style={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'top',
-                  aspectRatio: '4/5'
+                  objectPosition: 'top'
                 }}
+                fetchpriority="high"
               />
             </div>
           </div>
@@ -175,7 +176,7 @@ export default function About() {
                   />
                 </div>
                 <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent-contrast)' }}>
                     Client Felicitation
                   </span>
                   <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: '400', marginTop: '0.25rem', color: 'var(--color-text-primary)' }}>
