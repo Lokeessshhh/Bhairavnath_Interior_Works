@@ -18,7 +18,41 @@
     </noscript>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Prerendered Above-The-Fold Shell -->
+      <section id="home" class="hero-section">
+        <div class="container grid-split-2">
+          <div class="hero-content">
+            <span class="section-tag">Premium Interior Studio</span>
+            <h1 class="hero-title">
+              Designing Spaces <br />
+              That Inspire <span>Living</span>
+            </h1>
+            <p class="hero-description">
+              We craft exceptional, warm-minimalist interiors that blend functionality and premium aesthetics. Every space is curated with natural textures, balanced proportions, and a focus on timeless beauty.
+            </p>
+            <div class="hero-buttons">
+              <a class="btn-primary" href="/projects">Explore Our Work</a>
+              <a class="btn-secondary" href="/#contact">Book Consultation</a>
+            </div>
+          </div>
+          <div class="hero-image-wrapper">
+            <div class="hero-image-container">
+              <img 
+                src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=50&w=1000" 
+                srcset="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=40&w=480 480w,
+                        https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=40&w=800 800w,
+                        https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=50&w=1200 1200w"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                alt="Warm minimalist luxury living room" 
+                class="hero-img"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
