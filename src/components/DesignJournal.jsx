@@ -7,7 +7,7 @@ const optimizeUnsplashUrl = (url, width) => {
   if (!url || !url.includes('images.unsplash.com')) return url;
   try {
     const urlObj = new URL(url);
-    urlObj.searchParams.set('q', '60');
+    urlObj.searchParams.set('q', '50');
     if (width) {
       urlObj.searchParams.set('w', String(width));
     }

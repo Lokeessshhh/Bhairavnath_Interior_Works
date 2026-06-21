@@ -35,9 +35,9 @@ export default function ExecutionStandards() {
             }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=60&w=1000" 
-              srcSet="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=60&w=500 500w,
-                      https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=60&w=1000 1000w"
+              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=50&w=1000" 
+              srcSet="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=50&w=500 500w,
+                      https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=50&w=1000 1000w"
               sizes="(max-width: 768px) 100vw, 50vw"
               alt="Premium luxury modern home interiors" 
               style={{

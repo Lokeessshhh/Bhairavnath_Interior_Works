@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import Services from '../components/Services';
@@ -9,63 +9,73 @@ import Process from '../components/Process';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 
-export default function Home() {
-  // Scroll Reveal Intersection Observer (mounted for Home landing page)
-  useEffect(() => {
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+function LazySection({ children, height = '400px', className = '' }) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef(null);
 
+  useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
       },
-      {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Offset slightly to trigger naturally
-      }
+      { rootMargin: '400px 0px 400px 0px' }
     );
 
-    revealElements.forEach((el) => observer.observe(el));
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
 
-    return () => {
-      revealElements.forEach((el) => observer.unobserve(el));
-    };
+    return () => observer.disconnect();
   }, []);
 
+  return (
+    <div 
+      ref={ref} 
+      className={`${className} ${isIntersecting ? 'revealed' : ''}`}
+      style={!isIntersecting ? { minHeight: height } : undefined}
+    >
+      {isIntersecting ? children : null}
+    </div>
+  );
+}
+
+export default function Home() {
   return (
     <main>
       <Hero />
       <Stats />
       
-      <div className="reveal-on-scroll">
+      <LazySection height="500px" className="reveal-on-scroll">
         <Services />
-      </div>
+      </LazySection>
 
-      <div className="reveal-on-scroll">
+      <LazySection height="700px" className="reveal-on-scroll">
         <ExecutionStandards />
-      </div>
+      </LazySection>
 
-      <div className="reveal-on-scroll">
+      <LazySection height="700px" className="reveal-on-scroll">
         <DesignJournal />
-      </div>
+      </LazySection>
 
       {/* Interactive 3D Exploded Layout Section */}
-      <Interactive3DLayout />
+      <LazySection height="100vh">
+        <Interactive3DLayout />
+      </LazySection>
 
-      <div className="reveal-on-scroll">
+      <LazySection height="500px" className="reveal-on-scroll">
         <Process />
-      </div>
+      </LazySection>
 
-      <div className="reveal-on-scroll">
+      <LazySection height="600px" className="reveal-on-scroll">
         <Testimonials />
-      </div>
+      </LazySection>
 
-      <div className="reveal-on-scroll">
+      <LazySection height="600px" className="reveal-on-scroll">
         <Contact />
-      </div>
+      </LazySection>
     </main>
   );
 }
