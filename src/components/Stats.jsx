@@ -50,7 +50,7 @@ export default function Stats() {
                   fontWeight: '600',
                   textTransform: 'uppercase',
                   letterSpacing: '0.15em',
-                  color: 'var(--color-text-secondary)'
+                  color: '#6E6762'
                 }}
               >
                 {stat.label}

@@ -52,9 +52,10 @@ export default function Hero() {
           {/* Main Hero Image */}
           <div className="hero-image-container">
             <img 
-              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1600" 
+              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200" 
               alt="Warm minimalist luxury living room" 
               className="hero-img"
+              fetchpriority="high"
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
             />
@@ -62,9 +63,9 @@ export default function Hero() {
 
           {/* Floating Stats Badge */}
           <div className="hero-floating-badge">
-            <h3>20+</h3>
+            <h2>20+</h2>
             <div>
-              <h4>Years of Expertise</h4>
+              <h3>Years of Expertise</h3>
               <p>We plan and design thoughtful, durable functional spaces.</p>
             </div>
           </div>

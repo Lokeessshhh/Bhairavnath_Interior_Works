@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <main>
       <Hero />
       <Stats />
       
@@ -66,6 +66,6 @@ export default function Home() {
       <div className="reveal-on-scroll">
         <Contact />
       </div>
-    </>
+    </main>
   );
 }

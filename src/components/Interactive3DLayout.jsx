@@ -257,7 +257,7 @@ export default function Interactive3DLayout() {
                 Scroll to watch our execution model assemble — from empty rooms to fully furnished luxury interiors, piece by piece.
               </p>
             </div>
-            <div className={`layer-text-card ${activeLayer === 0 ? 'active' : ''}`}>
+            <div className={`layer-text-card ${activeLayer === 0 ? 'active' : ''}`} aria-hidden={activeLayer !== 0}>
               <span className="phase-num">Phase 01</span>
               <h3>Living Room Assembly</h3>
               <p>The foundation is set. Wooden flooring slides into place, followed by the sofa, custom TV unit, coffee table, and bookshelf — each piece precision-fitted to the layout.</p>
@@ -269,7 +269,7 @@ export default function Interactive3DLayout() {
         <div className="three-d-slide">
           <div className="three-d-left-col"></div>
           <div className="three-d-right-col">
-            <div className={`layer-text-card ${activeLayer === 1 ? 'active' : ''}`}>
+            <div className={`layer-text-card ${activeLayer === 1 ? 'active' : ''}`} aria-hidden={activeLayer !== 1}>
               <span className="phase-num">Phase 02</span>
               <h3>Modular Kitchen Fit-Out</h3>
               <p>Base cabinets, wall-mounted upper units, stone countertop, and chimney assemble into a fully modular kitchen — built with BWR plywood and Hettich fittings.</p>
@@ -281,7 +281,7 @@ export default function Interactive3DLayout() {
         <div className="three-d-slide">
           <div className="three-d-left-col"></div>
           <div className="three-d-right-col">
-            <div className={`layer-text-card ${activeLayer === 2 ? 'active' : ''}`}>
+            <div className={`layer-text-card ${activeLayer === 2 ? 'active' : ''}`} aria-hidden={activeLayer !== 2}>
               <span className="phase-num">Phase 03</span>
               <h3>Bedroom & Wardrobe Installation</h3>
               <p>The bedroom comes alive — sliding-door wardrobe, bed frame, side tables, and dresser lock into position. Every module finished with premium laminates and concealed hinges.</p>

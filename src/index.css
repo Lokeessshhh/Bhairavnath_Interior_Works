@@ -106,7 +106,7 @@ img {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--color-accent);
+  color: #856839;
   font-weight: 600;
   margin-bottom: 1rem;
   display: block;
@@ -349,14 +349,14 @@ img {
   max-width: 240px;
   transition: var(--transition-smooth);
 }
-.hero-floating-badge h3 {
+.hero-floating-badge h2 {
   font-family: var(--font-serif);
   font-size: 2.5rem;
   font-weight: 400;
   color: var(--color-accent);
   margin-bottom: 0.25rem;
 }
-.hero-floating-badge h4 {
+.hero-floating-badge h3 {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 600;
@@ -567,7 +567,7 @@ img {
     z-index: 5 !important;
   }
 
-  .hero-floating-badge h3 {
+  .hero-floating-badge h2 {
     margin-bottom: 0 !important;
     font-size: 2rem !important;
     color: var(--color-accent) !important;
@@ -579,7 +579,7 @@ img {
     flex-direction: column;
   }
 
-  .hero-floating-badge h4 {
+  .hero-floating-badge h3 {
     color: var(--color-text-primary) !important;
     margin-bottom: 0.15rem !important;
     font-size: 0.8rem !important;
@@ -722,10 +722,10 @@ img {
     border: 1px solid var(--color-border) !important;
     gap: 1rem !important;
   }
-  .hero-floating-badge h3 {
+  .hero-floating-badge h2 {
     font-size: 1.6rem !important;
   }
-  .hero-floating-badge h4 {
+  .hero-floating-badge h3 {
     font-size: 0.75rem !important;
   }
   .hero-floating-badge p {
@@ -1102,7 +1102,7 @@ input:focus, select:focus, textarea:focus {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-accent);
+  color: #856839;
   display: block;
   margin-bottom: 0.35rem;
 }

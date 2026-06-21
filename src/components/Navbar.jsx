@@ -65,7 +65,7 @@ export default function Navbar() {
             display: 'block', 
             letterSpacing: '0.35em', 
             marginTop: '-4px',
-            color: 'var(--color-accent)'
+            color: '#856839'
           }}>
             Interior Works
           </span>
