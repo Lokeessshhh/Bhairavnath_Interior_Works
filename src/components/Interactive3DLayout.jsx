@@ -112,10 +112,8 @@ export default function Interactive3DLayout() {
     // ==========================================
     // STEP 2: Scroll-driven frame display
     // ==========================================
-    const getHeaderHeight = () => {
-      const val = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
-      return parseInt(val, 10) || 72;
-    };
+    // Cache header height once — reading getComputedStyle inside scroll causes forced reflow
+    const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 72;
 
     const updateDimensions = () => {
       if (cancelled) return;
@@ -130,7 +128,6 @@ export default function Interactive3DLayout() {
     const handleScroll = () => {
       if (!section) return;
       const rect = section.getBoundingClientRect();
-      const headerH = getHeaderHeight();
       const viewportH = window.innerHeight;
       const scrollableHeight = rect.height - viewportH;
 

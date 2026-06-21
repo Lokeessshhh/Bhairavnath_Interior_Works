@@ -51,17 +51,17 @@ export default function Hero() {
         <div className="hero-image-wrapper">
           {/* Main Hero Image */}
           <div className="hero-image-container">
-            <img 
-              src="/assets/hero_desktop.webp" 
-              srcSet="/assets/hero_mobile.webp 600w,
-                      /assets/hero_desktop.webp 1200w"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              alt="Warm minimalist luxury living room" 
-              className="hero-img"
-              fetchpriority="high"
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1.0)'}
-            />
+            <picture>
+              <source media="(max-width: 768px)" srcSet="/assets/hero_mobile.webp" />
+              <img 
+                src="/assets/hero_desktop.webp" 
+                alt="Warm minimalist luxury living room" 
+                className="hero-img"
+                fetchpriority="high"
+                width="1200"
+                height="800"
+              />
+            </picture>
           </div>
 
           {/* Floating Stats Badge */}
