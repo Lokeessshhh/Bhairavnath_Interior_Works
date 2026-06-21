@@ -9,8 +9,29 @@ export default function Interactive3DLayout() {
   const [sectionWidth, setSectionWidth] = useState('100%');
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
+  const [startPreload, setStartPreload] = useState(false);
 
   useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setStartPreload(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '600px 0px 600px 0px' }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!startPreload) return;
+
     const canvas = canvasRef.current;
     const section = sectionRef.current;
     if (!canvas || !section) return;
@@ -22,7 +43,9 @@ export default function Interactive3DLayout() {
     // STEP 1: Preload all pre-saved frames
     // ==========================================
     const preloadFrames = async () => {
-      const totalFrames = 120;
+      const isMobile = window.innerWidth < 768;
+      const step = isMobile ? 3 : 1; // Load every 3rd frame on mobile (40 frames), full 120 on desktop
+      const totalFrames = Math.ceil(120 / step);
       const loadedImages = [];
       let loadedCount = 0;
 
@@ -43,7 +66,7 @@ export default function Interactive3DLayout() {
       });
 
       const loadPromise = new Promise((resolve) => {
-        for (let i = 1; i <= totalFrames; i++) {
+        for (let i = 1; i <= 120; i += step) {
           if (cancelled) return;
           const img = new Image();
           const frameNum = String(i).padStart(3, '0');
@@ -167,7 +190,7 @@ export default function Interactive3DLayout() {
       if (rafId) cancelAnimationFrame(rafId);
       framesRef.current = [];
     };
-  }, []);
+  }, [startPreload]);
 
   // JS-controlled pinning styles for the canvas background
   const getCanvasContainerStyle = () => {

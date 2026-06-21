@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -6,13 +6,15 @@ import ScrollToTop from './components/ScrollToTop';
 
 // Page Imports
 import Home from './pages/Home';
-import About from './pages/About';
-import ServicesPage from './pages/ServicesPage';
-import ProjectsPage from './pages/ProjectsPage';
-import ProcessPage from './pages/ProcessPage';
-import TestimonialsPage from './pages/TestimonialsPage';
-import BlogPage from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage';
+
+// Lazy-loaded Page Imports
+const About = lazy(() => import('./pages/About'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const ProjectsPage = lazy(() => import('./pages/ProjectsPage'));
+const ProcessPage = lazy(() => import('./pages/ProcessPage'));
+const TestimonialsPage = lazy(() => import('./pages/TestimonialsPage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
+const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 
 export default function App() {
 
@@ -23,17 +25,33 @@ export default function App() {
         {/* Navigation */}
         <Navbar />
 
-        {/* Routes configuration */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/process" element={<ProcessPage />} />
-          <Route path="/testimonials" element={<TestimonialsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
-          <Route path="/blog/:id" element={<BlogPostPage />} />
-        </Routes>
+        {/* Routes configuration wrapped in Suspense */}
+        <Suspense fallback={
+          <div style={{
+            height: '80vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: 'var(--color-bg-primary)',
+            color: 'var(--color-text-secondary)',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.85rem',
+            letterSpacing: '0.05em'
+          }}>
+            Loading...
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/process" element={<ProcessPage />} />
+            <Route path="/testimonials" element={<TestimonialsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogPostPage />} />
+          </Routes>
+        </Suspense>
 
         {/* Footer */}
         <Footer />

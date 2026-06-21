@@ -3,6 +3,25 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { initialArticles } from '../blogData';
 
+const optimizeUnsplashUrl = (url, width) => {
+  if (!url || !url.includes('images.unsplash.com')) return url;
+  try {
+    const urlObj = new URL(url);
+    urlObj.searchParams.set('q', '60');
+    if (width) {
+      urlObj.searchParams.set('w', String(width));
+    }
+    return urlObj.toString();
+  } catch (e) {
+    return url;
+  }
+};
+
+const getUnsplashSrcSet = (url) => {
+  if (!url || !url.includes('images.unsplash.com')) return undefined;
+  return `${optimizeUnsplashUrl(url, 400)} 400w, ${optimizeUnsplashUrl(url, 800)} 800w`;
+};
+
 export default function DesignJournal() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -100,7 +119,9 @@ export default function DesignJournal() {
                 }}
               >
                 <img 
-                  src={article.image} 
+                  src={optimizeUnsplashUrl(article.image, 800)} 
+                  srcSet={getUnsplashSrcSet(article.image)}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   alt={article.title}
                   className="journal-img"
                   style={{
@@ -109,6 +130,7 @@ export default function DesignJournal() {
                     objectFit: 'cover',
                     transition: 'var(--transition-smooth)'
                   }}
+                  loading="lazy"
                 />
               </div>
 

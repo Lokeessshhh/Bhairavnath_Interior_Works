@@ -52,7 +52,10 @@ export default function Hero() {
           {/* Main Hero Image */}
           <div className="hero-image-container">
             <img 
-              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200" 
+              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=60&w=1200" 
+              srcSet="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=60&w=600 600w,
+                      https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=60&w=1200 1200w"
+              sizes="(max-width: 768px) 100vw, 50vw"
               alt="Warm minimalist luxury living room" 
               className="hero-img"
               fetchpriority="high"
