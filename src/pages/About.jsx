@@ -106,17 +106,20 @@ export default function About() {
                 overflow: 'hidden'
               }}
             >
-              <img 
-                src="/assets/roshanlal_lohar.webp" 
-                alt="Roshanlal Lohar craftsmanship" 
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'top'
-                }}
-                fetchpriority="high"
-              />
+              <picture style={{ width: '100%', height: '100%' }}>
+                <source media="(max-width: 768px)" srcSet="/assets/roshanlal_lohar_mobile.webp" />
+                <img 
+                  src="/assets/roshanlal_lohar.webp" 
+                  alt="Roshanlal Lohar craftsmanship" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'top'
+                  }}
+                  fetchpriority="high"
+                />
+              </picture>
             </div>
           </div>
         </div>
