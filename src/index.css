@@ -504,7 +504,7 @@ img {
   }
 
   .hero-title span {
-    color: var(--color-accent) !important;
+    color: #9A7C4C !important;
   }
 
   .hero-section .hero-description {
@@ -570,7 +570,7 @@ img {
   .hero-floating-badge h2 {
     margin-bottom: 0 !important;
     font-size: 2rem !important;
-    color: var(--color-accent) !important;
+    color: #9E7F4F !important;
     flex-shrink: 0;
   }
 
@@ -591,7 +591,7 @@ img {
   .hero-floating-badge p {
     margin-bottom: 0 !important;
     font-size: 0.78rem !important;
-    color: var(--color-text-secondary) !important;
+    color: #6E6762 !important;
   }
 
   /* CTA Buttons styling for dark contrast */
@@ -1085,13 +1085,15 @@ input:focus, select:focus, textarea:focus {
   border: 1px solid var(--color-border);
   box-shadow: 0 10px 30px rgba(0,0,0,0.02);
   transition: var(--transition-smooth);
-  opacity: 0.25;
+  opacity: 0;
+  visibility: hidden;
   transform: translateX(10px);
   border-radius: 8px;
 }
 
 .layer-text-card.active {
   opacity: 1;
+  visibility: visible;
   transform: translateX(0);
   border-color: var(--color-accent);
   box-shadow: 0 15px 35px rgba(28, 25, 23, 0.06);
@@ -1168,7 +1170,8 @@ input:focus, select:focus, textarea:focus {
   }
 
   .layer-text-card {
-    opacity: 0.35 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
     transform: scale(0.96) !important;
     background-color: var(--color-glass) !important;
     backdrop-filter: blur(12px) !important;
@@ -1180,6 +1183,7 @@ input:focus, select:focus, textarea:focus {
 
   .layer-text-card.active {
     opacity: 1 !important;
+    visibility: visible !important;
     transform: scale(1) !important;
     border-color: var(--color-accent) !important;
     box-shadow: 0 15px 30px rgba(28, 25, 23, 0.08) !important;

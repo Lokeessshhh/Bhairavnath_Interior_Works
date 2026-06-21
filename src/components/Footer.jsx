@@ -179,7 +179,7 @@ export default function Footer() {
             justifyContent: 'space-between',
             alignItems: 'center',
             fontSize: '0.8rem',
-            color: 'rgba(244, 241, 234, 0.4)',
+            color: 'rgba(244, 241, 234, 0.6)',
             flexWrap: 'wrap',
             gap: '1rem'
           }}

@@ -44,6 +44,7 @@ export default function App() {
           target="_blank"
           rel="noopener noreferrer"
           className="whatsapp-premium-float"
+          aria-label="WhatsApp Design Desk"
           style={{
             position: 'fixed',
             bottom: '30px',

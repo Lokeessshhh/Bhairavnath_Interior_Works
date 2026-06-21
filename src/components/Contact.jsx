@@ -75,7 +75,7 @@ export default function Contact() {
                   <MapPin size={22} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Our Service Area</h4>
+                  <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Our Service Area</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.5', maxWidth: '300px' }}>
                     Based in Mumbai, Serving All Over Mumbai, MH
                   </p>
@@ -87,7 +87,7 @@ export default function Contact() {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Call & WhatsApp</h4>
+                  <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Call & WhatsApp</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)', marginBottom: '0.35rem' }}>+91 77383 37299</p>
                   <a 
                     href="https://wa.me/917738337299?text=Hello%20Bhairavnath%20Interior%20Works,%20I%20would%20like%20to%20inquire%20about%20a%20design%20consultation."
@@ -115,7 +115,7 @@ export default function Contact() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Email Us</h4>
+                  <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Email Us</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>roshanlohar80@gmail.com</p>
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function Contact() {
                   <Clock size={20} />
                 </div>
                 <div>
-                  <h4 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Business Hours</h4>
+                  <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>Business Hours</h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--color-text-secondary)' }}>Mon - Sat: 10:00 AM - 7:00 PM</p>
                 </div>
               </div>
