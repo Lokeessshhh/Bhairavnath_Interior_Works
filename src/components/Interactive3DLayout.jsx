@@ -7,6 +7,7 @@ export default function Interactive3DLayout() {
   const [activeLayer, setActiveLayer] = useState(0);
   const [pinState, setPinState] = useState('top');
   const [sectionWidth, setSectionWidth] = useState('100%');
+  const [sectionLeft, setSectionLeft] = useState('0px');
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [startPreload, setStartPreload] = useState(false);
@@ -116,6 +117,12 @@ export default function Interactive3DLayout() {
       return parseInt(val, 10) || 72;
     };
 
+    const updateDimensions = () => {
+      if (cancelled) return;
+      setSectionWidth(section.offsetWidth + 'px');
+      setSectionLeft(section.getBoundingClientRect().left + 'px');
+    };
+
     let targetProgress = 0;
     let currentProgress = 0;
     let rafId = null;
@@ -126,8 +133,6 @@ export default function Interactive3DLayout() {
       const headerH = getHeaderHeight();
       const viewportH = window.innerHeight;
       const scrollableHeight = rect.height - viewportH;
-
-      setSectionWidth(section.offsetWidth + 'px');
 
       if (scrollableHeight <= 0) {
         setPinState('top');
@@ -176,11 +181,16 @@ export default function Interactive3DLayout() {
       rafId = requestAnimationFrame(tick);
     };
 
+    // Initialize dimensions and scroll position on load
+    updateDimensions();
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     tick();
 
-    const handleResize = () => handleScroll();
+    const handleResize = () => {
+      updateDimensions();
+      handleScroll();
+    };
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -204,7 +214,7 @@ export default function Interactive3DLayout() {
         ...base,
         position: 'fixed',
         top: 'var(--header-height, 72px)',
-        left: sectionRef.current ? sectionRef.current.getBoundingClientRect().left + 'px' : '0',
+        left: sectionLeft,
         zIndex: 1,
       };
     }
