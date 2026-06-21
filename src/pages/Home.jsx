@@ -1,13 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
 import Stats from '../components/Stats';
-import Services from '../components/Services';
-import ExecutionStandards from '../components/ExecutionStandards';
-import DesignJournal from '../components/DesignJournal';
-import Interactive3DLayout from '../components/Interactive3DLayout';
-import Process from '../components/Process';
-import Testimonials from '../components/Testimonials';
-import Contact from '../components/Contact';
+
+// Lazy-load sections to split code from the initial page loading bundle
+const Services = lazy(() => import('../components/Services'));
+const ExecutionStandards = lazy(() => import('../components/ExecutionStandards'));
+const DesignJournal = lazy(() => import('../components/DesignJournal'));
+const Interactive3DLayout = lazy(() => import('../components/Interactive3DLayout'));
+const Process = lazy(() => import('../components/Process'));
+const Testimonials = lazy(() => import('../components/Testimonials'));
+const Contact = lazy(() => import('../components/Contact'));
 
 function LazySection({ children, height = '400px', className = '' }) {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -37,7 +39,11 @@ function LazySection({ children, height = '400px', className = '' }) {
       className={`${className} ${isIntersecting ? 'revealed' : ''}`}
       style={!isIntersecting ? { minHeight: height } : undefined}
     >
-      {isIntersecting ? children : null}
+      {isIntersecting ? (
+        <Suspense fallback={null}>
+          {children}
+        </Suspense>
+      ) : null}
     </div>
   );
 }
