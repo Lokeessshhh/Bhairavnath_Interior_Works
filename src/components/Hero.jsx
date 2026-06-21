@@ -7,7 +7,7 @@ export default function Hero() {
     <section id="home" className="hero-section">
       <div className="container grid-split-2">
         {/* Left: Content Block */}
-        <div className="hero-content animate-slide-up">
+        <div className="hero-content">
           <span className="section-tag">Premium Interior Studio</span>
           
           <h1 className="hero-title">
@@ -48,7 +48,7 @@ export default function Hero() {
         </div>
 
         {/* Right: Premium Image Block with Overlapping Badge */}
-        <div className="hero-image-wrapper animate-slide-in-right">
+        <div className="hero-image-wrapper">
           {/* Main Hero Image */}
           <div className="hero-image-container">
             <img 

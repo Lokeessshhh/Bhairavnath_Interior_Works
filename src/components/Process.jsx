@@ -61,7 +61,7 @@ export default function Process() {
                   fontFamily: 'var(--font-serif)',
                   fontSize: '4.5rem',
                   fontWeight: '400',
-                  color: 'var(--color-border)',
+                  color: 'var(--color-watermark)',
                   lineHeight: '1',
                   marginBottom: '1.5rem',
                   userSelect: 'none',
@@ -72,7 +72,7 @@ export default function Process() {
                   e.currentTarget.style.transform = 'translateY(-4px)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--color-border)';
+                  e.currentTarget.style.color = 'var(--color-watermark)';
                   e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >

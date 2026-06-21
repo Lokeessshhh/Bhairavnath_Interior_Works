@@ -4,12 +4,13 @@
   --color-bg-secondary: #F4F1EA;    /* Warm cream sand */
   --color-bg-dark: #121212;         /* Deep luxurious charcoal */
   --color-text-primary: #1C1917;    /* Stone dark charcoal */
-  --color-text-secondary: #78716C;  /* Warm stone gray */
+  --color-text-secondary: #6B635F;  /* Darker warm stone gray for accessibility compliance */
   --color-text-light: #F4F1EA;      /* Light cream for dark sections */
   --color-accent: #C29F68;          /* Brushed brass / warm gold */
   --color-accent-hover: #A88653;    /* Hover state gold */
   --color-accent-light: #FBF9F6;
   --color-border: #E6E2D9;          /* Delicate beige borders */
+  --color-watermark: #948B7E;       /* Subtle warm gray for step numbers (satisfies 3:1 contrast for large text) */
   --color-border-dark: #2A2A2A;     /* Dark section borders */
   --color-glass: rgba(250, 249, 246, 0.85); /* Frosted header tint */
   --color-card-shadow: rgba(28, 25, 23, 0.04);
