@@ -64,7 +64,7 @@ export default function DesignJournal() {
           <h2 className="section-title" style={{ margin: 0, marginBottom: '0.5rem' }}>
             The Nesta Journal
           </h2>
-          <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', maxWidth: '480px', marginTop: '0.5rem' }}>
+          <p style={{ color: '#5C5652', fontSize: '0.95rem', maxWidth: '480px', marginTop: '0.5rem' }}>
             Read our thoughts on premium carpentry, material curation, and architectural layouts.
           </p>
           <div 
@@ -154,7 +154,7 @@ export default function DesignJournal() {
                     fontWeight: '600',
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
-                    color: 'var(--color-accent)',
+                    color: '#856839',
                     marginBottom: '1rem'
                   }}
                 >

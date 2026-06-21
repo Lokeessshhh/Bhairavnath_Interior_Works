@@ -56,6 +56,7 @@ export default function Process() {
             >
               {/* Step Number Badge */}
               <div 
+                aria-hidden="true"
                 style={{
                   fontFamily: 'var(--font-serif)',
                   fontSize: '4.5rem',
@@ -95,7 +96,7 @@ export default function Process() {
               <p 
                 style={{
                   fontSize: '0.9rem',
-                  color: 'var(--color-text-secondary)',
+                  color: '#5C5652',
                   lineHeight: '1.6'
                 }}
               >
