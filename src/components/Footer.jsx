@@ -111,7 +111,7 @@ export default function Footer() {
 
           {/* Col 2: Navigation Links */}
           <div>
-            <h4 
+            <h3 
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.85rem',
@@ -123,7 +123,7 @@ export default function Footer() {
               }}
             >
               Navigation
-            </h4>
+            </h3>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.85rem', fontSize: '0.9rem', color: 'rgba(244, 241, 234, 0.6)' }}>
               {navItems.map((item) => (
                 <li key={item.label}>
@@ -142,7 +142,7 @@ export default function Footer() {
 
           {/* Col 3: Studio Coordinates */}
           <div>
-            <h4 
+            <h3 
               style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: '0.85rem',
@@ -154,7 +154,7 @@ export default function Footer() {
               }}
             >
               Get In Touch
-            </h4>
+            </h3>
             <p style={{ fontSize: '0.9rem', color: 'rgba(244, 241, 234, 0.6)', lineHeight: '1.6', marginBottom: '1.25rem' }}>
               Based in Mumbai,<br />
               Serving All Over Mumbai,<br />

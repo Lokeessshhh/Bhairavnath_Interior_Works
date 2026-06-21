@@ -102,7 +102,7 @@ export default function Services() {
               <p 
                 style={{
                   fontSize: '0.9rem',
-                  color: 'var(--color-text-secondary)',
+                  color: '#5C5652',
                   lineHeight: '1.6'
                 }}
               >
