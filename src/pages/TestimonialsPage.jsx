@@ -63,16 +63,6 @@ export default function TestimonialsPage() {
     }
   };
 
-  if (loading) {
-    return (
-      <main style={{ paddingTop: 'calc(var(--header-height) + 2rem)', backgroundColor: 'var(--color-bg-primary)', minHeight: '85vh' }}>
-        <div className="container" style={{ textAlign: 'center', padding: '6rem 0' }}>
-          <p style={{ color: 'var(--color-text-secondary)' }}>Loading client reviews...</p>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main style={{ paddingTop: 'calc(var(--header-height) + 2rem)', backgroundColor: 'var(--color-bg-primary)' }}>
       {/* Header */}
@@ -101,7 +91,37 @@ export default function TestimonialsPage() {
 
               {/* Approved Reviews List */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                {reviews.length === 0 ? (
+                {loading ? (
+                  [...Array(3)].map((_, index) => (
+                    <div 
+                      key={index}
+                      className="skeleton-pulsing"
+                      style={{
+                        backgroundColor: 'var(--color-bg-secondary)',
+                        border: '1px solid var(--color-border)',
+                        padding: '3rem',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '1rem'
+                      }}
+                    >
+                      <div style={{ display: 'flex', gap: '4px', marginBottom: '0.5rem' }}>
+                        {[...Array(5)].map((_, i) => (
+                          <div key={i} style={{ width: '18px', height: '18px', backgroundColor: 'var(--color-border)', borderRadius: '50%' }} />
+                        ))}
+                      </div>
+                      <div style={{ height: '1.2rem', backgroundColor: 'var(--color-border)', width: '90%', borderRadius: '4px' }} />
+                      <div style={{ height: '1.2rem', backgroundColor: 'var(--color-border)', width: '75%', borderRadius: '4px', marginBottom: '1rem' }} />
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <div style={{ width: '52px', height: '52px', borderRadius: '50%', backgroundColor: 'var(--color-border)' }} />
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
+                          <div style={{ height: '0.9rem', backgroundColor: 'var(--color-border)', width: '40%', borderRadius: '4px' }} />
+                          <div style={{ height: '0.78rem', backgroundColor: 'var(--color-border)', width: '25%', borderRadius: '4px' }} />
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : reviews.length === 0 ? (
                   <div style={{ backgroundColor: 'var(--color-bg-secondary)', border: '1px solid var(--color-border)', padding: '3rem', textAlign: 'center' }}>
                     <p style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', color: 'var(--color-text-secondary)', fontStyle: 'italic' }}>
                       "No client reviews have been published yet. Be the first to share your experience with our craftsmanship!"
@@ -226,6 +246,7 @@ export default function TestimonialsPage() {
                           onMouseEnter={() => setHoverRating(star)}
                           onMouseLeave={() => setHoverRating(0)}
                           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '2px', color: 'inherit' }}
+                          aria-label={`Rate ${star} star${star > 1 ? 's' : ''}`}
                         >
                           <Star 
                             size={26} 

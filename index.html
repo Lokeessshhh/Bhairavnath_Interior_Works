@@ -7,22 +7,15 @@
     <script>
       // DevTools metric reporter mock to eliminate Lighthouse console errors
       (function() {
-        var currentReporter = window.__chromium_devtools_metrics_reporter;
-        if (typeof currentReporter !== 'function') {
-          currentReporter = function() {};
-        }
         try {
-          Object.defineProperty(window, '__chromium_devtools_metrics_reporter', {
-            get: function() {
-              return typeof currentReporter === 'function' ? currentReporter : function() {};
-            },
-            set: function(val) {
-              if (typeof val === 'function') {
-                currentReporter = val;
-              }
-            },
-            configurable: true
-          });
+          if (!window.__chromium_devtools_metrics_reporter) {
+            Object.defineProperty(window, '__chromium_devtools_metrics_reporter', {
+              value: function() {},
+              writable: true,
+              configurable: true,
+              enumerable: true
+            });
+          }
         } catch (e) {}
       })();
 
