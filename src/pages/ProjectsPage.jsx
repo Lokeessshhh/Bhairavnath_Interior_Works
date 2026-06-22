@@ -4,7 +4,7 @@ import initialProjects from '../data/initialProjects.json';
 const getOptimizedUrl = (url, width = 800) => {
   if (!url) return url;
   if (url.includes('cloudinary.com') && url.includes('/upload/')) {
-    return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
+    return url.replace('/upload/', `/upload/f_auto,q_auto:eco,w_${width}/`);
   }
   if (url.includes('images.unsplash.com')) {
     let optimized = url;
@@ -14,9 +14,9 @@ const getOptimizedUrl = (url, width = 800) => {
       optimized += `&w=${width}`;
     }
     if (url.includes('q=')) {
-      optimized = optimized.replace(/q=\d+/, `q=75`);
+      optimized = optimized.replace(/q=\d+/, `q=60`);
     } else {
-      optimized += `&q=75`;
+      optimized += `&q=60`;
     }
     if (!url.includes('fm=')) {
       optimized += `&fm=webp`;

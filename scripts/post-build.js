@@ -29,22 +29,13 @@ if (!fs.existsSync(indexPath)) {
 
 let indexContent = fs.readFileSync(indexPath, 'utf8');
 
-// Inject the dynamic modulepreload code
-const injection = `
-    <script>
-      if (window.location.pathname === '/projects') {
-        const link = document.createElement('link');
-        link.rel = 'modulepreload';
-        link.href = '/assets/${projectsChunk}';
-        document.head.appendChild(link);
-      }
-    </script>
-`;
+// Inject the static modulepreload code
+const injection = `    <link rel="modulepreload" crossorigin href="/assets/${projectsChunk}">`;
 
 if (indexContent.includes('</head>')) {
   indexContent = indexContent.replace('</head>', `${injection}\n  </head>`);
   fs.writeFileSync(indexPath, indexContent, 'utf8');
-  console.log(`Successfully injected modulepreload for ${projectsChunk} into dist/index.html`);
+  console.log(`Successfully injected static modulepreload for ${projectsChunk} into dist/index.html`);
 } else {
   console.error('Error: Could not find </head> tag in dist/index.html');
   process.exit(1);
