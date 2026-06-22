@@ -9,16 +9,21 @@ if (!fs.existsSync(assetsDir)) {
   process.exit(1);
 }
 
-// Find ProjectsPage chunk
+// Find chunks
 const files = fs.readdirSync(assetsDir);
 const projectsChunk = files.find(f => f.startsWith('ProjectsPage-') && f.endsWith('.js'));
+const processChunk = files.find(f => f.startsWith('ProcessPage-') && f.endsWith('.js'));
 
 if (!projectsChunk) {
   console.error('Error: ProjectsPage chunk not found in dist/assets!');
   process.exit(1);
 }
+if (!processChunk) {
+  console.error('Error: ProcessPage chunk not found in dist/assets!');
+  process.exit(1);
+}
 
-console.log(`Found ProjectsPage chunk: ${projectsChunk}`);
+console.log(`Found chunks: ProjectsPage=${projectsChunk}, ProcessPage=${processChunk}`);
 
 // Read dist/index.html
 const indexPath = path.join(distDir, 'index.html');
@@ -30,12 +35,12 @@ if (!fs.existsSync(indexPath)) {
 let indexContent = fs.readFileSync(indexPath, 'utf8');
 
 // Inject the static modulepreload code
-const injection = `    <link rel="modulepreload" crossorigin href="/assets/${projectsChunk}">`;
+const injection = `    <link rel="modulepreload" crossorigin href="/assets/${projectsChunk}">\n    <link rel="modulepreload" crossorigin href="/assets/${processChunk}">`;
 
 if (indexContent.includes('</head>')) {
   indexContent = indexContent.replace('</head>', `${injection}\n  </head>`);
   fs.writeFileSync(indexPath, indexContent, 'utf8');
-  console.log(`Successfully injected static modulepreload for ${projectsChunk} into dist/index.html`);
+  console.log(`Successfully injected static modulepreloads for ${projectsChunk} and ${processChunk} into dist/index.html`);
 } else {
   console.error('Error: Could not find </head> tag in dist/index.html');
   process.exit(1);

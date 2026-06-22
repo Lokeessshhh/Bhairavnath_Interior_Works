@@ -92,10 +92,10 @@ export default function ProcessPage() {
                     right: '25px',
                     fontFamily: 'var(--font-serif)',
                     fontSize: '3rem',
-                    color: 'var(--color-border)',
-                    lineHeight: '1',
-                    opacity: 0.6
+                    color: 'var(--color-watermark)',
+                    lineHeight: '1'
                   }}
+                  aria-hidden="true"
                 >
                   {step.number}
                 </div>
@@ -118,7 +118,7 @@ export default function ProcessPage() {
                   {step.icon}
                 </div>
 
-                <h3 
+                <h2 
                   style={{
                     fontFamily: 'var(--font-serif)',
                     fontSize: '1.35rem',
@@ -128,7 +128,7 @@ export default function ProcessPage() {
                   }}
                 >
                   {step.title}
-                </h3>
+                </h2>
 
                 <p 
                   style={{
@@ -166,7 +166,7 @@ export default function ProcessPage() {
                   paddingTop: '2rem'
                 }}
               >
-                <div style={{ fontSize: '3rem', fontFamily: 'var(--font-serif)', color: 'var(--color-accent)' }}>
+                <div style={{ fontSize: '3rem', fontFamily: 'var(--font-serif)', color: 'var(--color-accent-contrast)' }}>
                   100%
                 </div>
                 <div style={{ fontSize: '0.85rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-primary)' }}>
