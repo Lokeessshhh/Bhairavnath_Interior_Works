@@ -3,8 +3,33 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, Lock, PlusCircle } from 'lucide-react';
 import { initialArticles } from '../blogData';
 
+const getOptimizedUrl = (url, width = 800) => {
+  if (!url) return url;
+  if (url.includes('cloudinary.com') && url.includes('/upload/')) {
+    return url.replace('/upload/', `/upload/f_auto,q_auto:eco,w_${width}/`);
+  }
+  if (url.includes('images.unsplash.com')) {
+    let optimized = url;
+    if (url.includes('w=')) {
+      optimized = optimized.replace(/w=\d+/, `w=${width}`);
+    } else {
+      optimized += `&w=${width}`;
+    }
+    if (url.includes('q=')) {
+      optimized = optimized.replace(/q=\d+/, `q=60`);
+    } else {
+      optimized += `&q=60`;
+    }
+    if (!url.includes('fm=')) {
+      optimized += `&fm=webp`;
+    }
+    return optimized;
+  }
+  return url;
+};
+
 export default function BlogPage() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState(initialArticles);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [adminPassword, setAdminPassword] = useState('');
   const [adminError, setAdminError] = useState('');
@@ -199,7 +224,7 @@ export default function BlogPage() {
                     fontWeight: '600',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
-                    color: 'var(--color-accent)',
+                    color: 'var(--color-accent-contrast)',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
@@ -322,7 +347,7 @@ export default function BlogPage() {
 
               {/* Grid Cards list */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-                {articles.map(article => (
+                {articles.map((article, index) => (
                   <article 
                     key={article.id}
                     className="blog-post-card"
@@ -330,16 +355,18 @@ export default function BlogPage() {
                     {/* Image */}
                     <div style={{ height: '200px', overflow: 'hidden', border: '1px solid var(--color-border)' }}>
                       <img 
-                        src={article.image} 
+                        src={getOptimizedUrl(article.image, index === 0 ? 800 : 600)} 
                         alt={article.title} 
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        fetchPriority={index === 0 ? "high" : "low"}
+                        loading={index === 0 ? "eager" : "lazy"}
                       />
                     </div>
 
                     {/* Meta info */}
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontSize: '0.72rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent)', marginBottom: '0.75rem' }}>
-                        <span>{article.category}</span>
+                        <span style={{ color: 'var(--color-accent-contrast)' }}>{article.category}</span>
                         <span style={{ color: 'var(--color-text-secondary)', fontWeight: '500' }}>{article.readTime}</span>
                       </div>
 
@@ -375,7 +402,7 @@ export default function BlogPage() {
                           style={{
                             background: 'none',
                             border: 'none',
-                            color: '#e53e3e',
+                            color: '#c53030',
                             fontSize: '0.8rem',
                             fontWeight: '600',
                             cursor: 'pointer',
