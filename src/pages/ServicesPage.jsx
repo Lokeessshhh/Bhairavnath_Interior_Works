@@ -1,5 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Home, Building, ChevronDown, ChevronUp, Layers, CheckCircle2 } from 'lucide-react';
+
+function LazySection({ children, height = '400px', className = '' }) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px 0px 400px 0px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div 
+      ref={ref} 
+      className={className}
+      style={!isIntersecting ? { minHeight: height } : undefined}
+    >
+      {isIntersecting ? children : null}
+    </div>
+  );
+}
+
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState('residential');
@@ -144,7 +178,7 @@ export default function ServicesPage() {
                   transition: 'var(--transition-smooth)'
                 }}
               >
-                <h3 
+                <h2 
                   style={{
                     fontFamily: 'var(--font-serif)',
                     fontSize: '1.4rem',
@@ -154,7 +188,7 @@ export default function ServicesPage() {
                   }}
                 >
                   {service.title}
-                </h3>
+                </h2>
                 <p 
                   style={{
                     fontSize: '0.9rem',
@@ -171,114 +205,118 @@ export default function ServicesPage() {
       </section>
 
       {/* Material & Hardware Specifications */}
-      <section className="section" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="section-tag">Specifications</span>
-            <h2 className="section-title">Materials & Hardware We Use</h2>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', maxWidth: '500px', marginTop: '0.5rem' }}>
-              We build using only authentic, top-grade wood composites and premium German-engineered sliding fittings.
-            </p>
-            <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '0.5rem' }} />
-          </div>
+      <LazySection height="450px">
+        <section className="section" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="section-tag">Specifications</span>
+              <h2 className="section-title">Materials & Hardware We Use</h2>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '0.95rem', maxWidth: '500px', marginTop: '0.5rem' }}>
+                We build using only authentic, top-grade wood composites and premium German-engineered sliding fittings.
+              </p>
+              <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '0.5rem' }} />
+            </div>
 
-          <div className="grid-3-col">
-            {materialsList.map((material, index) => (
-              <div 
-                key={index}
-                style={{
-                  backgroundColor: 'var(--color-bg-primary)',
-                  border: '1px solid var(--color-border)',
-                  padding: '3rem 2.25rem',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', color: 'var(--color-accent)' }}>
-                  <Layers size={22} />
-                  <h3 
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '0.9rem',
-                      fontWeight: '700',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      color: 'var(--color-text-primary)'
-                    }}
-                  >
-                    {material.category}
-                  </h3>
+            <div className="grid-3-col">
+              {materialsList.map((material, index) => (
+                <div 
+                  key={index}
+                  style={{
+                    backgroundColor: 'var(--color-bg-primary)',
+                    border: '1px solid var(--color-border)',
+                    padding: '3rem 2.25rem',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', color: 'var(--color-accent)' }}>
+                    <Layers size={22} />
+                    <h3 
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '0.9rem',
+                        fontWeight: '700',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        color: 'var(--color-text-primary)'
+                      }}
+                    >
+                      {material.category}
+                    </h3>
+                  </div>
+
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                    {material.items.map((item, idx) => (
+                      <li key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>
+                        <CheckCircle2 size={16} style={{ color: 'var(--color-accent)', marginTop: '3px', flexShrink: 0 }} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                  {material.items.map((item, idx) => (
-                    <li key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start', fontSize: '0.9rem', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>
-                      <CheckCircle2 size={16} style={{ color: 'var(--color-accent)', marginTop: '3px', flexShrink: 0 }} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </LazySection>
 
       {/* FAQs Section */}
-      <section className="section">
-        <div className="container" style={{ maxWidth: '850px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="section-tag">Answering Questions</span>
-            <h2 className="section-title">Frequently Asked Questions</h2>
-            <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '0.5rem' }} />
-          </div>
+      <LazySection height="500px">
+        <section className="section">
+          <div className="container" style={{ maxWidth: '850px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="section-tag">Answering Questions</span>
+              <h2 className="section-title">Frequently Asked Questions</h2>
+              <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '0.5rem' }} />
+            </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {faqs.map((faq, index) => (
-              <div 
-                key={index}
-                style={{
-                  border: '1px solid var(--color-border)',
-                  backgroundColor: 'var(--color-bg-secondary)',
-                  padding: '1.5rem 2rem',
-                  cursor: 'pointer',
-                  transition: 'var(--transition-fast)'
-                }}
-                onClick={() => toggleFaq(index)}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <h3 
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      color: 'var(--color-text-primary)'
-                    }}
-                  >
-                    {faq.q}
-                  </h3>
-                  {openFaq === index ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+              {faqs.map((faq, index) => (
+                <div 
+                  key={index}
+                  style={{
+                    border: '1px solid var(--color-border)',
+                    backgroundColor: 'var(--color-bg-secondary)',
+                    padding: '1.5rem 2rem',
+                    cursor: 'pointer',
+                    transition: 'var(--transition-fast)'
+                  }}
+                  onClick={() => toggleFaq(index)}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h3 
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '1rem',
+                        fontWeight: '600',
+                        color: 'var(--color-text-primary)'
+                      }}
+                    >
+                      {faq.q}
+                    </h3>
+                    {openFaq === index ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  </div>
+
+                  {openFaq === index && (
+                    <p 
+                      style={{
+                        fontSize: '0.9rem',
+                        color: 'var(--color-text-secondary)',
+                        lineHeight: '1.6',
+                        marginTop: '1.25rem',
+                        borderTop: '1px solid var(--color-border)',
+                        paddingTop: '1rem'
+                      }}
+                    >
+                      {faq.a}
+                    </p>
+                  )}
                 </div>
-
-                {openFaq === index && (
-                  <p 
-                    style={{
-                      fontSize: '0.9rem',
-                      color: 'var(--color-text-secondary)',
-                      lineHeight: '1.6',
-                      marginTop: '1.25rem',
-                      borderTop: '1px solid var(--color-border)',
-                      paddingTop: '1rem'
-                    }}
-                  >
-                    {faq.a}
-                  </p>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </LazySection>
     </main>
   );
 }
