@@ -51,10 +51,9 @@ export default function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:id" element={<BlogPostPage />} />
           </Routes>
+          {/* Footer */}
+          <Footer />
         </Suspense>
-
-        {/* Footer */}
-        <Footer />
 
         {/* WhatsApp Premium Floating Pill */}
         <a 

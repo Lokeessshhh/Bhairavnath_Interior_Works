@@ -2,11 +2,195 @@ import React, { useState, useEffect, useRef } from 'react';
 import projectsData from '../data/cloudinaryImages.json';
 
 const getOptimizedUrl = (url, width = 800) => {
-  if (url && url.includes('cloudinary.com') && url.includes('/upload/')) {
+  if (!url) return url;
+  if (url.includes('cloudinary.com') && url.includes('/upload/')) {
     return url.replace('/upload/', `/upload/f_auto,q_auto,w_${width}/`);
+  }
+  if (url.includes('images.unsplash.com')) {
+    let optimized = url;
+    if (url.includes('w=')) {
+      optimized = optimized.replace(/w=\d+/, `w=${width}`);
+    } else {
+      optimized += `&w=${width}`;
+    }
+    if (url.includes('q=')) {
+      optimized = optimized.replace(/q=\d+/, `q=75`);
+    } else {
+      optimized += `&q=75`;
+    }
+    if (!url.includes('fm=')) {
+      optimized += `&fm=webp`;
+    }
+    return optimized;
   }
   return url;
 };
+
+function EagerBentoItem({ project, gridStyle }) {
+  return (
+    <div 
+      className="bento-item eager"
+      style={{
+        ...gridStyle,
+        position: 'relative',
+        overflow: 'hidden',
+        border: '1px solid var(--color-border)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.01)',
+        backgroundColor: 'var(--color-bg-primary)',
+        opacity: 0,
+        transform: 'translateY(30px)',
+        transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+      }}
+      onMouseEnter={(e) => {
+        const img = e.currentTarget.querySelector('.bento-img');
+        const overlay = e.currentTarget.querySelector('.bento-overlay');
+        if (img) img.style.transform = 'scale(1.05)';
+        if (overlay) overlay.style.opacity = 1;
+      }}
+      onMouseLeave={(e) => {
+        const img = e.currentTarget.querySelector('.bento-img');
+        const overlay = e.currentTarget.querySelector('.bento-overlay');
+        if (img) img.style.transform = 'scale(1.0)';
+        if (overlay) overlay.style.opacity = 0;
+      }}
+    >
+      <img 
+        src={getOptimizedUrl(project.image, project.size === 'wide' ? 800 : project.size === 'tall' ? 600 : 400)} 
+        srcSet={`${getOptimizedUrl(project.image, 400)} 400w, ${getOptimizedUrl(project.image, 800)} 800w`}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+        alt={project.title} 
+        className="bento-img"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          transition: 'var(--transition-smooth)'
+        }}
+        loading="lazy"
+      />
+      <div 
+        className="bento-overlay"
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          padding: '1.5rem',
+          background: 'linear-gradient(to top, rgba(28, 25, 23, 0.8) 0%, rgba(28, 25, 23, 0) 100%)',
+          color: '#FFFFFF',
+          opacity: 0,
+          transition: 'var(--transition-fast)'
+        }}
+      >
+        <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-accent)' }}>
+          {project.category}
+        </span>
+        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: '400', marginTop: '0.25rem', color: '#FFFFFF' }}>
+          {project.title}
+        </h3>
+        <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.25rem' }}>
+          {project.description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function LazyBentoItem({ project, gridStyle }) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          setTimeout(() => setRevealed(true), 50);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '300px 0px' }
+    );
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div 
+      ref={ref}
+      className={`bento-item ${revealed ? 'revealed' : ''}`}
+      style={{
+        ...gridStyle,
+        position: 'relative',
+        overflow: 'hidden',
+        border: '1px solid var(--color-border)',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.01)',
+        backgroundColor: 'var(--color-bg-primary)',
+        opacity: revealed ? 1 : 0,
+        transform: revealed ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+      }}
+      onMouseEnter={isIntersecting ? (e) => {
+        const img = e.currentTarget.querySelector('.bento-img');
+        const overlay = e.currentTarget.querySelector('.bento-overlay');
+        if (img) img.style.transform = 'scale(1.05)';
+        if (overlay) overlay.style.opacity = 1;
+      } : undefined}
+      onMouseLeave={isIntersecting ? (e) => {
+        const img = e.currentTarget.querySelector('.bento-img');
+        const overlay = e.currentTarget.querySelector('.bento-overlay');
+        if (img) img.style.transform = 'scale(1.0)';
+        if (overlay) overlay.style.opacity = 0;
+      } : undefined}
+    >
+      {isIntersecting ? (
+        <>
+          <img 
+            src={getOptimizedUrl(project.image, project.size === 'wide' ? 800 : project.size === 'tall' ? 600 : 400)} 
+            srcSet={`${getOptimizedUrl(project.image, 400)} 400w, ${getOptimizedUrl(project.image, 800)} 800w`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+            alt={project.title} 
+            className="bento-img"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'var(--transition-smooth)'
+            }}
+            loading="lazy"
+          />
+          <div 
+            className="bento-overlay"
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '100%',
+              padding: '1.5rem',
+              background: 'linear-gradient(to top, rgba(28, 25, 23, 0.8) 0%, rgba(28, 25, 23, 0) 100%)',
+              color: '#FFFFFF',
+              opacity: 0,
+              transition: 'var(--transition-fast)'
+            }}
+          >
+            <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-accent)' }}>
+              {project.category}
+            </span>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: '400', marginTop: '0.25rem', color: '#FFFFFF' }}>
+              {project.title}
+            </h3>
+            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.25rem' }}>
+              {project.description}
+            </p>
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
 
 export default function ProjectsPage() {
   const [sliderPos, setSliderPos] = useState(50);
@@ -40,15 +224,17 @@ export default function ProjectsPage() {
 
   // Staggered scroll reveal triggers for Bento items
   useEffect(() => {
-    const bentoItems = document.querySelectorAll('.bento-item');
+    const bentoItems = document.querySelectorAll('.bento-item.eager');
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, idx) => {
-          if (entry.isIntersecting) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.classList.contains('revealed')) {
+            const visibleEagerItems = Array.from(document.querySelectorAll('.bento-item.eager'));
+            const idx = visibleEagerItems.indexOf(entry.target);
             // Apply staggered delays
             setTimeout(() => {
               entry.target.classList.add('revealed');
-            }, (idx % 6) * 100); // Reset staggering delay factor per row
+            }, (idx % 6) * 100);
           }
         });
       },
@@ -111,8 +297,11 @@ export default function ProjectsPage() {
           >
             {/* BEFORE image (Back layer) */}
             <img 
-              src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200" 
+              src={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} 
+              srcSet={`${getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} 600w, ${getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} 1200w`}
+              sizes="(max-width: 768px) 100vw, 950px"
               alt="Raw site under construction before" 
+              fetchPriority="high"
               style={{
                 width: '100%',
                 height: '100%',
@@ -134,7 +323,9 @@ export default function ProjectsPage() {
               }}
             >
               <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200" 
+                src={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} 
+                srcSet={`${getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} 600w, ${getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} 1200w`}
+                sizes="(max-width: 768px) 100vw, 950px"
                 alt="Completed modular kitchen handover after" 
                 style={{
                   position: 'absolute',
@@ -195,6 +386,7 @@ export default function ProjectsPage() {
               max="100" 
               value={sliderPos}
               onChange={handleSliderChange}
+              aria-label="Before and after comparison slider"
               style={{
                 position: 'absolute',
                 top: 0,
@@ -245,7 +437,7 @@ export default function ProjectsPage() {
                     letterSpacing: '0.08em',
                     padding: '0.5rem 0.25rem',
                     cursor: 'pointer',
-                    color: activeFilter === filter ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                    color: activeFilter === filter ? 'var(--color-accent-contrast)' : 'var(--color-text-secondary)',
                     position: 'relative'
                   }}
                 >
@@ -260,7 +452,7 @@ export default function ProjectsPage() {
 
           {/* Bento Grid Layout wrapper */}
           <div className="bento-grid">
-            {displayedProjects.map(project => {
+            {displayedProjects.map((project, index) => {
               // Map bento sizes to grid column/row spans
               let gridStyle = {};
               if (project.size === 'wide') {
@@ -271,75 +463,23 @@ export default function ProjectsPage() {
                 gridStyle = { gridColumn: 'span 1', gridRow: 'span 1' };
               }
 
-              return (
-                <div 
-                  key={project.id}
-                  className="bento-item"
-                  style={{
-                    ...gridStyle,
-                    position: 'relative',
-                    overflow: 'hidden',
-                    border: '1px solid var(--color-border)',
-                    boxShadow: '0 10px 20px rgba(0,0,0,0.01)',
-                    backgroundColor: 'var(--color-bg-primary)',
-                    opacity: 0,
-                    transform: 'translateY(30px)',
-                    transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
-                  }}
-                  onMouseEnter={(e) => {
-                    const img = e.currentTarget.querySelector('.bento-img');
-                    const overlay = e.currentTarget.querySelector('.bento-overlay');
-                    if (img) img.style.transform = 'scale(1.05)';
-                    if (overlay) overlay.style.opacity = 1;
-                  }}
-                  onMouseLeave={(e) => {
-                    const img = e.currentTarget.querySelector('.bento-img');
-                    const overlay = e.currentTarget.querySelector('.bento-overlay');
-                    if (img) img.style.transform = 'scale(1.0)';
-                    if (overlay) overlay.style.opacity = 0;
-                  }}
-                >
-                  {/* Photo Layer */}
-                  <img 
-                    src={getOptimizedUrl(project.image, project.size === 'wide' ? 1000 : project.size === 'tall' ? 800 : 600)} 
-                    alt={project.title} 
-                    className="bento-img"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'var(--transition-smooth)'
-                    }}
-                    loading="lazy"
+              if (index < 6) {
+                return (
+                  <EagerBentoItem 
+                    key={project.id} 
+                    project={project} 
+                    gridStyle={gridStyle} 
                   />
-
-                  {/* Glassmorphism Title Overlay */}
-                  <div 
-                    className="bento-overlay"
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      width: '100%',
-                      padding: '1.5rem',
-                      background: 'linear-gradient(to top, rgba(28, 25, 23, 0.8) 0%, rgba(28, 25, 23, 0) 100%)',
-                      color: '#FFFFFF',
-                      opacity: 0,
-                      transition: 'var(--transition-fast)'
-                    }}
-                  >
-                    <span style={{ fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-accent)' }}>
-                      {project.category}
-                    </span>
-                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: '400', marginTop: '0.25rem', color: '#FFFFFF' }}>
-                      {project.title}
-                    </h3>
-                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', marginTop: '0.25rem' }}>
-                      {project.description}
-                    </p>
-                  </div>
-                </div>
-              );
+                );
+              } else {
+                return (
+                  <LazyBentoItem 
+                    key={project.id} 
+                    project={project} 
+                    gridStyle={gridStyle} 
+                  />
+                );
+              }
             })}
           </div>
 

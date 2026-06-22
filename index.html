@@ -6,7 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       // DevTools metric reporter mock to eliminate Lighthouse console errors
-      window.__chromium_devtools_metrics_reporter = window.__chromium_devtools_metrics_reporter || function() {};
+      (function() {
+        var currentReporter = window.__chromium_devtools_metrics_reporter;
+        if (typeof currentReporter !== 'function') {
+          currentReporter = function() {};
+        }
+        try {
+          Object.defineProperty(window, '__chromium_devtools_metrics_reporter', {
+            get: function() {
+              return typeof currentReporter === 'function' ? currentReporter : function() {};
+            },
+            set: function(val) {
+              if (typeof val === 'function') {
+                currentReporter = val;
+              }
+            },
+            configurable: true
+          });
+        } catch (e) {}
+      })();
 
       if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '') {
         const link = document.createElement('link');
