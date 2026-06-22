@@ -196,10 +196,8 @@ function LazyBentoItem({ project, gridStyle }) {
   );
 }
 
-export default function ProjectsPage() {
+const BeforeAfterSlider = React.memo(() => {
   const [sliderPos, setSliderPos] = useState(50);
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(18);
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(950);
 
@@ -225,6 +223,147 @@ export default function ProjectsPage() {
   const handleSliderChange = (e) => {
     setSliderPos(e.target.value);
   };
+
+  return (
+    <div 
+      ref={containerRef}
+      style={{
+        position: 'relative',
+        width: '100%',
+        aspectRatio: '16/10',
+        overflow: 'hidden',
+        border: '1px solid var(--color-border)',
+        boxShadow: '0 25px 50px rgba(0,0,0,0.06)',
+        userSelect: 'none'
+      }}
+    >
+      {/* BEFORE image (Back layer) */}
+      <picture style={{ width: '100%', height: '100%' }}>
+        <source media="(max-width: 768px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} />
+        <source media="(min-width: 769px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} />
+        <img 
+          src={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} 
+          alt="Raw site under construction before" 
+          fetchPriority="high"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            pointerEvents: 'none'
+          }}
+        />
+      </picture>
+
+      {/* AFTER image (Overlay sliding layer) */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: `${sliderPos}%`,
+          overflow: 'hidden',
+          transition: 'width 0.05s ease-out'
+        }}
+      >
+        <picture 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: `${containerWidth}px`,
+            height: '100%'
+          }}
+        >
+          <source media="(max-width: 768px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} />
+          <source media="(min-width: 769px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} />
+          <img 
+            src={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} 
+            alt="Completed modular kitchen handover after" 
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              pointerEvents: 'none'
+            }}
+          />
+        </picture>
+      </div>
+
+      {/* Drag Line Indicator */}
+      <div 
+        style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: `${sliderPos}%`,
+          width: '2px',
+          backgroundColor: '#FFFFFF',
+          zIndex: 10,
+          pointerEvents: 'none',
+          boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+          transition: 'left 0.05s ease-out'
+        }}
+      >
+        {/* Circular handle badge */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '40px',
+            height: '40px',
+            borderRadius: '50%',
+            backgroundColor: '#FFFFFF',
+            color: 'var(--color-text-primary)',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.25)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '0.8rem',
+            fontWeight: '700',
+            letterSpacing: '1px'
+          }}
+        >
+          ↔
+        </div>
+      </div>
+
+      {/* HTML Slider Control overlay */}
+      <input 
+        type="range" 
+        min="0" 
+        max="100" 
+        value={sliderPos}
+        onChange={handleSliderChange}
+        aria-label="Before and after comparison slider"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          opacity: 0,
+          cursor: 'ew-resize',
+          zIndex: 20
+        }}
+      />
+
+      {/* Visual Tags */}
+      <div style={{ position: 'absolute', bottom: '20px', left: '20px', backgroundColor: 'rgba(0,0,0,0.6)', color: '#FFFFFF', padding: '0.4rem 1rem', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', zIndex: 15 }}>
+        Raw Site
+      </div>
+      <div style={{ position: 'absolute', bottom: '20px', right: '20px', backgroundColor: 'rgba(194, 159, 104, 0.95)', color: '#FFFFFF', padding: '0.4rem 1rem', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', zIndex: 15 }}>
+        Bhairavnath Handover
+      </div>
+    </div>
+  );
+});
+
+export default function ProjectsPage() {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [visibleCount, setVisibleCount] = useState(18);
 
   // Staggered scroll reveal triggers for Bento items
   useEffect(() => {
@@ -307,139 +446,7 @@ export default function ProjectsPage() {
           </div>
 
           {/* Interactive Before/After Component */}
-          <div 
-            ref={containerRef}
-            style={{
-              position: 'relative',
-              width: '100%',
-              aspectRatio: '16/10',
-              overflow: 'hidden',
-              border: '1px solid var(--color-border)',
-              boxShadow: '0 25px 50px rgba(0,0,0,0.06)',
-              userSelect: 'none'
-            }}
-          >
-            {/* BEFORE image (Back layer) */}
-            <picture style={{ width: '100%', height: '100%' }}>
-              <source media="(max-width: 768px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} />
-              <source media="(min-width: 769px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} />
-              <img 
-                src={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} 
-                alt="Raw site under construction before" 
-                fetchPriority="high"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  pointerEvents: 'none'
-                }}
-              />
-            </picture>
-
-            {/* AFTER image (Overlay sliding layer) */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                height: '100%',
-                width: `${sliderPos}%`,
-                overflow: 'hidden',
-                transition: 'width 0.05s ease-out'
-              }}
-            >
-              <picture 
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: `${containerWidth}px`,
-                  height: '100%'
-                }}
-              >
-                <source media="(max-width: 768px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} />
-                <source media="(min-width: 769px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} />
-                <img 
-                  src={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} 
-                  alt="Completed modular kitchen handover after" 
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    pointerEvents: 'none'
-                  }}
-                />
-              </picture>
-            </div>
-
-            {/* Drag Line Indicator */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: 0,
-                bottom: 0,
-                left: `${sliderPos}%`,
-                width: '2px',
-                backgroundColor: '#FFFFFF',
-                zIndex: 10,
-                pointerEvents: 'none',
-                boxShadow: '0 0 10px rgba(0,0,0,0.3)',
-                transition: 'left 0.05s ease-out'
-              }}
-            >
-              {/* Circular handle badge */}
-              <div 
-                style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  backgroundColor: '#FFFFFF',
-                  color: 'var(--color-text-primary)',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.25)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.8rem',
-                  fontWeight: '700',
-                  letterSpacing: '1px'
-                }}
-              >
-                ↔
-              </div>
-            </div>
-
-            {/* HTML Slider Control overlay */}
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              value={sliderPos}
-              onChange={handleSliderChange}
-              aria-label="Before and after comparison slider"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                opacity: 0,
-                cursor: 'ew-resize',
-                zIndex: 20
-              }}
-            />
-
-            {/* Visual Tags */}
-            <div style={{ position: 'absolute', bottom: '20px', left: '20px', backgroundColor: 'rgba(0,0,0,0.6)', color: '#FFFFFF', padding: '0.4rem 1rem', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', zIndex: 15 }}>
-              Raw Site
-            </div>
-            <div style={{ position: 'absolute', bottom: '20px', right: '20px', backgroundColor: 'rgba(194, 159, 104, 0.95)', color: '#FFFFFF', padding: '0.4rem 1rem', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', zIndex: 15 }}>
-              Bhairavnath Handover
-            </div>
-          </div>
+          <BeforeAfterSlider />
         </div>
       </section>
 
