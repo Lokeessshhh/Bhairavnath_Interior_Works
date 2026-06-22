@@ -200,6 +200,12 @@ async function run() {
     fs.writeFileSync(outputPath, JSON.stringify(projects, null, 2), 'utf8');
     console.log(`Success! Synchronized ${projects.length} portfolio images to ${outputPath}`);
 
+    // Also write to public/projects.json for dynamic loading
+    const publicDataDir = path.resolve('public');
+    const publicOutputPath = path.join(publicDataDir, 'projects.json');
+    fs.writeFileSync(publicOutputPath, JSON.stringify(projects, null, 2), 'utf8');
+    console.log(`Success! Synchronized ${projects.length} portfolio images to ${publicOutputPath}`);
+
     const aboutOutputPath = path.join(dataDir, 'aboutPhotos.json');
     fs.writeFileSync(aboutOutputPath, JSON.stringify(aboutPhotos, null, 2), 'utf8');
     console.log(`Success! Synchronized ${aboutPhotos.length} recognition photos to ${aboutOutputPath}`);

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import projectsData from '../data/cloudinaryImages.json';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import initialProjects from '../data/initialProjects.json';
 
 const getOptimizedUrl = (url, width = 800) => {
   if (!url) return url;
@@ -54,20 +54,22 @@ function EagerBentoItem({ project, gridStyle }) {
         if (overlay) overlay.style.opacity = 0;
       }}
     >
-      <img 
-        src={getOptimizedUrl(project.image, project.size === 'wide' ? 800 : project.size === 'tall' ? 600 : 400)} 
-        srcSet={`${getOptimizedUrl(project.image, 400)} 400w, ${getOptimizedUrl(project.image, 800)} 800w`}
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-        alt={project.title} 
-        className="bento-img"
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          transition: 'var(--transition-smooth)'
-        }}
-        loading="lazy"
-      />
+      <picture style={{ width: '100%', height: '100%' }}>
+        <source media="(max-width: 768px)" srcSet={getOptimizedUrl(project.image, 400)} />
+        <source media="(min-width: 769px)" srcSet={getOptimizedUrl(project.image, project.size === 'wide' ? 800 : project.size === 'tall' ? 600 : 400)} />
+        <img 
+          src={getOptimizedUrl(project.image, 400)} 
+          alt={project.title} 
+          className="bento-img"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            transition: 'var(--transition-smooth)'
+          }}
+          loading="lazy"
+        />
+      </picture>
       <div 
         className="bento-overlay"
         style={{
@@ -148,20 +150,22 @@ function LazyBentoItem({ project, gridStyle }) {
     >
       {isIntersecting ? (
         <>
-          <img 
-            src={getOptimizedUrl(project.image, project.size === 'wide' ? 800 : project.size === 'tall' ? 600 : 400)} 
-            srcSet={`${getOptimizedUrl(project.image, 400)} 400w, ${getOptimizedUrl(project.image, 800)} 800w`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
-            alt={project.title} 
-            className="bento-img"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transition: 'var(--transition-smooth)'
-            }}
-            loading="lazy"
-          />
+          <picture style={{ width: '100%', height: '100%' }}>
+            <source media="(max-width: 768px)" srcSet={getOptimizedUrl(project.image, 400)} />
+            <source media="(min-width: 769px)" srcSet={getOptimizedUrl(project.image, project.size === 'wide' ? 800 : project.size === 'tall' ? 600 : 400)} />
+            <img 
+              src={getOptimizedUrl(project.image, 400)} 
+              alt={project.title} 
+              className="bento-img"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transition: 'var(--transition-smooth)'
+              }}
+              loading="lazy"
+            />
+          </picture>
           <div 
             className="bento-overlay"
             style={{
@@ -245,14 +249,34 @@ export default function ProjectsPage() {
     return () => bentoItems.forEach((item) => observer.unobserve(item));
   }, [activeFilter, visibleCount]);
 
+  const [allProjects, setAllProjects] = useState(null);
+
+  useEffect(() => {
+    fetch('/projects.json')
+      .then(res => res.json())
+      .then(data => {
+        setAllProjects(data);
+      })
+      .catch(err => {
+        console.error('Failed to load full projects database:', err);
+      });
+  }, []);
+
+  const projectsData = allProjects || initialProjects;
+
   // Derived filter categories from the actual Cloudinary sync data
-  const categories = ['All', ...new Set(projectsData.map(p => p.category))];
+  const categories = useMemo(() => {
+    return ['All', ...new Set(projectsData.map(p => p.category))];
+  }, [projectsData]);
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projectsData 
-    : projectsData.filter(p => p.category === activeFilter);
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'All') return projectsData;
+    return projectsData.filter(p => p.category === activeFilter);
+  }, [projectsData, activeFilter]);
 
-  const displayedProjects = filteredProjects.slice(0, visibleCount);
+  const displayedProjects = useMemo(() => {
+    return filteredProjects.slice(0, visibleCount);
+  }, [filteredProjects, visibleCount]);
 
   return (
     <main style={{ paddingTop: 'calc(var(--header-height) + 2rem)', backgroundColor: 'var(--color-bg-primary)' }}>
@@ -296,19 +320,21 @@ export default function ProjectsPage() {
             }}
           >
             {/* BEFORE image (Back layer) */}
-            <img 
-              src={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} 
-              srcSet={`${getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} 600w, ${getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} 1200w`}
-              sizes="(max-width: 768px) 100vw, 950px"
-              alt="Raw site under construction before" 
-              fetchPriority="high"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                pointerEvents: 'none'
-              }}
-            />
+            <picture style={{ width: '100%', height: '100%' }}>
+              <source media="(max-width: 768px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} />
+              <source media="(min-width: 769px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 1200)} />
+              <img 
+                src={getOptimizedUrl("https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200", 600)} 
+                alt="Raw site under construction before" 
+                fetchPriority="high"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  pointerEvents: 'none'
+                }}
+              />
+            </picture>
 
             {/* AFTER image (Overlay sliding layer) */}
             <div 
@@ -322,21 +348,28 @@ export default function ProjectsPage() {
                 transition: 'width 0.05s ease-out'
               }}
             >
-              <img 
-                src={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} 
-                srcSet={`${getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} 600w, ${getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} 1200w`}
-                sizes="(max-width: 768px) 100vw, 950px"
-                alt="Completed modular kitchen handover after" 
+              <picture 
                 style={{
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  width: `${containerWidth}px`, // Matches parent container width dynamically
-                  height: '100%',
-                  objectFit: 'cover',
-                  pointerEvents: 'none'
+                  width: `${containerWidth}px`,
+                  height: '100%'
                 }}
-              />
+              >
+                <source media="(max-width: 768px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} />
+                <source media="(min-width: 769px)" srcSet={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 1200)} />
+                <img 
+                  src={getOptimizedUrl("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200", 600)} 
+                  alt="Completed modular kitchen handover after" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    pointerEvents: 'none'
+                  }}
+                />
+              </picture>
             </div>
 
             {/* Drag Line Indicator */}
