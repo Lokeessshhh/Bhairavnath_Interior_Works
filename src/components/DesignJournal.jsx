@@ -32,7 +32,11 @@ export default function DesignJournal() {
         const res = await fetch('/api/journals');
         if (res.ok) {
           const data = await res.json();
-          setArticles((data.length > 0 ? data : initialArticles).slice(0, 3));
+          const mappedData = data.map(item => ({
+            ...item,
+            readTime: item.readTime || item.read_time
+          }));
+          setArticles((mappedData.length > 0 ? mappedData : initialArticles).slice(0, 3));
         } else {
           setArticles(initialArticles.slice(0, 3));
         }

@@ -1,24 +1,62 @@
 export const initialArticles = [
   {
-    id: 'monsoon-proofing',
-    category: 'Material Care',
-    title: 'Monsoon-Proofing Your Wooden Furniture in Mumbai',
-    description: 'How to protect solid timber doors, veneer sheets, and modular cabinetry from swelling during Mumbai’s heavy monsoon humidity.',
-    image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800',
+    id: 'festive-decor-hacks',
+    category: 'Styling & Decor',
+    title: 'Preparing Your Living Room for Diwali & Ganesh Chaturthi',
+    description: 'Quick lighting swaps, modular display rearrangements, and space-clearing layouts for festive hosting in Mumbai.',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800',
+    readTime: '4 min read',
+    content: `
+      Festivals are times of joy, warmth, and hosting guests. In Mumbai apartments, welcoming relatives for Ganpati and Diwali requires clearing floor space and setting up ambient lights. 
+
+      ### 1. Modular Furniture Arrangements
+      Move heavy coffee tables to the side to create a clear path for guests. If you have modular sofa units, separate them to create modular seating corners.
+
+      ### 2. Warm Accent Lighting
+      Turn off harsh overhead tubelights. Introduce quiet luxury: place brass diya platters, install 3000K warm LED strips under modular shelves, and use fabric floor lamps to create a cozy, premium festive glow.
+
+      ### 3. Displaying Decor
+      Clear your modular tv-unit shelves of daily clutter. Dedicate these open shelves to display traditional marigold flower pots, brass lamps, and heritage carvings.
+    `
+  },
+  {
+    id: 'countertop-choices',
+    category: 'Material Curation',
+    title: 'Travertine vs. Granite: Deciding Countertops in Indian Kitchens',
+    description: 'Comparing scratch resistance, heat tolerances, and staining from turmeric and spices in daily Indian cooking.',
+    image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&q=80&w=800',
     readTime: '5 min read',
     content: `
-      Mumbai's heavy monsoons bring moisture levels that can wreak havoc on custom woodwork and modular setups. Wood is a hygroscopic material, meaning it naturally absorbs moisture from the air, leading to swelling, jammed drawers, and veneer warping. 
+      Choosing a kitchen countertop in an Indian household is a serious decision. Indian cooking involves heavy spice usage (like turmeric, which stains easily), hot kadhais placed directly on surfaces, and active kneading. We compare two popular luxury choices.
 
-      Here are key preventative guidelines to monsoon-proof your home:
+      ### 1. Granite: The Workhorse
+      Granite is the absolute champion of Indian kitchens. It is a natural igneous rock, making it highly scratch-resistant, heat-resistant, and non-porous when sealed correctly. Spilled masalas or hot pans will not damage quality black granite.
 
-      ### 1. Sourcing BWR Plywood
-      Never settle for commercial-grade plywood in kitchens or bathrooms. Always specify Boiling Water Resistant (BWR) or marine-grade IS:710 plywood. These are bonded with synthetic phenol-formaldehyde resin, which resists moisture absorption and prevents layers from delaminating under humid conditions.
+      ### 2. Travertine & Marble: The Luxury Statement
+      Travertine and Italian marble offer a soft, luxurious aesthetic. However, they are calcium carbonate-based, which makes them highly porous and acidic-sensitive. Lemon juice, vinegar, or turmeric will etch and stain travertine if not cleaned immediately. 
 
-      ### 2. Edges and Sealing
-      Unsealed edges are the primary entry points for water. Ensure that all modular boards are edge-banded with hot-melt glue machines at the factory, leaving zero gaps. For site-finished wood, apply clear sealer coats before the monsoon season starts.
+      ### 3. Our Recommendation
+      If you cook heavy daily meals, go with sealed dark Granite or high-end Quartz. If you prefer a dry service kitchen or open breakfast counter, Travertine provides a stunning warm sand visual that makes your home look like an editorial catalog.
+    `
+  },
+  {
+    id: 'vastu-layouts',
+    category: 'Design Principles',
+    title: 'Vastu Shastra: Layouts for East-Facing Mumbai Homes',
+    description: 'Ideal placements for doors, beds, and modular stoves to invite positive energy flow inside urban apartment configurations.',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800',
+    readTime: '6 min read',
+    content: `
+      Vastu Shastra is deep-rooted in Indian architecture. Aligning your apartment's layout with natural elements ensures peaceful living and positive energy circulation. For east-facing flats in Mumbai, the placement of key zones is crucial.
 
-      ### 3. Ventilation and Spacing
-      Always leave a 1-inch air gap between your wardrobes and concrete walls. Mumbai walls absorb rain and sweat moisture; direct contact will transfer dampness to the back panels of your closets. Use silica gel packets inside drawers to keep micro-environments dry.
+      ### 1. The Entrance Door
+      For east-facing homes, the main door should ideally be positioned in the North-East or East direction. Teak wood doors with traditional brass fittings are recommended as they welcome positive solar energy.
+
+      ### 2. Modular Kitchen Placement
+      According to Vastu, the kitchen represents the fire element (Agni). The South-East corner of the apartment is the ideal location for the kitchen. When designing modular layouts, ensure the cooking stove is placed such that you face East while cooking.
+
+      ### 3. Master Bedroom Position
+      The master bedroom should be placed in the South-West zone of the home to bring stability and peace. When positioning wardrobes and custom timber headboards, ensure your head points South while sleeping.
     `
   },
   {
@@ -45,63 +83,25 @@ export const initialArticles = [
     `
   },
   {
-    id: 'vastu-layouts',
-    category: 'Design Principles',
-    title: 'Vastu Shastra: Layouts for East-Facing Mumbai Homes',
-    description: 'Ideal placements for doors, beds, and modular stoves to invite positive energy flow inside urban apartment configurations.',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800',
-    readTime: '6 min read',
-    content: `
-      Vastu Shastra is deep-rooted in Indian architecture. Aligning your apartment's layout with natural elements ensures peaceful living and positive energy circulation. For east-facing flats in Mumbai, the placement of key zones is crucial.
-
-      ### 1. The Entrance Door
-      For east-facing homes, the main door should ideally be positioned in the North-East or East direction. Teak wood doors with traditional brass fittings are recommended as they welcome positive solar energy.
-
-      ### 2. Modular Kitchen Placement
-      According to Vastu, the kitchen represents the fire element (Agni). The South-East corner of the apartment is the ideal location for the kitchen. When designing modular layouts, ensure the cooking stove is placed such that you face East while cooking.
-
-      ### 3. Master Bedroom Position
-      The master bedroom should be placed in the South-West zone of the home to bring stability and peace. When positioning wardrobes and custom timber headboards, ensure your head points South while sleeping.
-    `
-  },
-  {
-    id: 'countertop-choices',
-    category: 'Material Curation',
-    title: 'Travertine vs. Granite: Deciding Countertops in Indian Kitchens',
-    description: 'Comparing scratch resistance, heat tolerances, and staining from turmeric and spices in daily Indian cooking.',
-    image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&q=80&w=800',
+    id: 'monsoon-proofing',
+    category: 'Material Care',
+    title: 'Monsoon-Proofing Your Wooden Furniture in Mumbai',
+    description: 'How to protect solid timber doors, veneer sheets, and modular cabinetry from swelling during Mumbai’s heavy monsoon humidity.',
+    image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800',
     readTime: '5 min read',
     content: `
-      Choosing a kitchen countertop in an Indian household is a serious decision. Indian cooking involves heavy spice usage (like turmeric, which stains easily), hot kadhais placed directly on surfaces, and active kneading. We compare two popular luxury choices.
+      Mumbai's heavy monsoons bring moisture levels that can wreak havoc on custom woodwork and modular setups. Wood is a hygroscopic material, meaning it naturally absorbs moisture from the air, leading to swelling, jammed drawers, and veneer warping. 
 
-      ### 1. Granite: The Workhorse
-      Granite is the absolute champion of Indian kitchens. It is a natural igneous rock, making it highly scratch-resistant, heat-resistant, and non-porous when sealed correctly. Spilled masalas or hot pans will not damage quality black granite.
+      Here are key preventative guidelines to monsoon-proof your home:
 
-      ### 2. Travertine & Marble: The Luxury Statement
-      Travertine and Italian marble offer a soft, luxurious aesthetic. However, they are calcium carbonate-based, which makes them highly porous and acidic-sensitive. Lemon juice, vinegar, or turmeric will etch and stain travertine if not cleaned immediately. 
+      ### 1. Sourcing BWR Plywood
+      Never settle for commercial-grade plywood in kitchens or bathrooms. Always specify Boiling Water Resistant (BWR) or marine-grade IS:710 plywood. These are bonded with synthetic phenol-formaldehyde resin, which resists moisture absorption and prevents layers from delaminating under humid conditions.
 
-      ### 3. Our Recommendation
-      If you cook heavy daily meals, go with sealed dark Granite or high-end Quartz. If you prefer a dry service kitchen or open breakfast counter, Travertine provides a stunning warm sand visual that makes your home look like an editorial catalog.
-    `
-  },
-  {
-    id: 'festive-decor-hacks',
-    category: 'Styling & Decor',
-    title: 'Preparing Your Living Room for Diwali & Ganesh Chaturthi',
-    description: 'Quick lighting swaps, modular display rearrangements, and space-clearing layouts for festive hosting in Mumbai.',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800',
-    readTime: '4 min read',
-    content: `
-      Festivals are times of joy, warmth, and hosting guests. In Mumbai apartments, welcoming relatives for Ganpati and Diwali requires clearing floor space and setting up ambient lights. 
+      ### 2. Edges and Sealing
+      Unsealed edges are the primary entry points for water. Ensure that all modular boards are edge-banded with hot-melt glue machines at the factory, leaving zero gaps. For site-finished wood, apply clear sealer coats before the monsoon season starts.
 
-      ### 1. Modular Furniture Arrangements
-      Move heavy coffee tables to the side to create a clear path for guests. If you have modular sofa units, separate them to create modular seating corners.
-
-      ### 2. Warm Accent Lighting
-      Turn off harsh overhead tubelights. Introduce quiet luxury: place brass diya platters, install 3000K warm LED strips under modular shelves, and use fabric floor lamps to create a cozy, premium festive glow.
-
-      ### 3. Displaying Decor
-      Clear your modular tv-unit shelves of daily clutter. Dedicate these open shelves to display traditional marigold flower pots, brass lamps, and heritage carvings.
+      ### 3. Ventilation and Spacing
+      Always leave a 1-inch air gap between your wardrobes and concrete walls. Mumbai walls absorb rain and sweat moisture; direct contact will transfer dampness to the back panels of your closets. Use silica gel packets inside drawers to keep micro-environments dry.
     `
   }
 ];

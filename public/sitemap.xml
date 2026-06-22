@@ -43,19 +43,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/monsoon-proofing</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/space-saving-mumbai</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/vastu-layouts</loc>
+    <loc>https://www.bhairavnathinteriors.in/blog/festive-decor-hacks</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -67,7 +55,19 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/festive-decor-hacks</loc>
+    <loc>https://www.bhairavnathinteriors.in/blog/vastu-layouts</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/space-saving-mumbai</loc>
+    <lastmod>2026-06-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/monsoon-proofing</loc>
     <lastmod>2026-06-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

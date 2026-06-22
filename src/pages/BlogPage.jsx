@@ -56,7 +56,11 @@ export default function BlogPage() {
       const res = await fetch('/api/journals');
       if (res.ok) {
         const data = await res.json();
-        setArticles(data.length > 0 ? data : initialArticles);
+        const mappedData = data.map(item => ({
+          ...item,
+          readTime: item.readTime || item.read_time
+        }));
+        setArticles(mappedData.length > 0 ? mappedData : initialArticles);
       } else {
         setArticles(initialArticles);
       }

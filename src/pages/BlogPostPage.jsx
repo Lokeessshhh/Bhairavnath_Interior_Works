@@ -15,7 +15,11 @@ export default function BlogPostPage() {
         const res = await fetch(`/api/journals?id=${id}`);
         if (res.ok) {
           const data = await res.json();
-          setArticle(data);
+          const mappedData = {
+            ...data,
+            readTime: data.readTime || data.read_time
+          };
+          setArticle(mappedData);
         } else {
           const match = initialArticles.find((a) => a.id === id);
           setArticle(match || null);
