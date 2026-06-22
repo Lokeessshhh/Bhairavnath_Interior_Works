@@ -1,5 +1,39 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import aboutPhotos from '../data/aboutPhotos.json';
+
+function LazySection({ children, height = '400px', className = '' }) {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '400px 0px 400px 0px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div 
+      ref={ref} 
+      className={className}
+      style={!isIntersecting ? { minHeight: height } : undefined}
+    >
+      {isIntersecting ? children : null}
+    </div>
+  );
+}
+
 
 const getOptimizedUrl = (url, width = 600) => {
   if (url && url.includes('cloudinary.com') && url.includes('/upload/')) {
@@ -126,71 +160,73 @@ export default function About() {
       </section>
 
       {/* Honors & Ceremonies Recognition */}
-      <section className="section" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span className="section-tag">Recognition</span>
-            <h2 className="section-title">Moments of Appreciation</h2>
-            <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: '600px', lineHeight: '1.6', marginTop: '0.5rem' }}>
-              Roshanlal Lohar receiving honors and warm felicitations from clients and local associations for over two decades of honest execution and craftsmanship.
-            </p>
-            <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '1.5rem' }} />
-          </div>
+      <LazySection height="600px">
+        <section className="section" style={{ backgroundColor: 'var(--color-bg-secondary)', borderTop: '1px solid var(--color-border)' }}>
+          <div className="container">
+            <div style={{ textAlign: 'center', marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span className="section-tag">Recognition</span>
+              <h2 className="section-title">Moments of Appreciation</h2>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1rem', maxWidth: '600px', lineHeight: '1.6', marginTop: '0.5rem' }}>
+                Roshanlal Lohar receiving honors and warm felicitations from clients and local associations for over two decades of honest execution and craftsmanship.
+              </p>
+              <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '1.5rem' }} />
+            </div>
 
-          {/* Pictures Grid */}
-          <div className="recognition-grid">
-            {aboutPhotos.map((photo, index) => (
-              <div 
-                key={photo.id || index}
-                style={{
-                  backgroundColor: 'var(--color-bg-primary)',
-                  border: '1px solid var(--color-border)',
-                  padding: '1rem',
-                  boxShadow: '0 10px 20px rgba(0,0,0,0.02)',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'var(--transition-smooth)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.boxShadow = '0 15px 30px rgba(28, 25, 23, 0.05)';
-                  const img = e.currentTarget.querySelector('img');
-                  if (img) img.style.transform = 'scale(1.03)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.02)';
-                  const img = e.currentTarget.querySelector('img');
-                  if (img) img.style.transform = 'scale(1.0)';
-                }}
-              >
-                <div style={{ overflow: 'hidden', height: '280px', border: '1px solid var(--color-border)' }}>
-                  <img 
-                    src={getOptimizedUrl(photo.image, 600)} 
-                    alt={photo.title || 'Recognition Ceremony'} 
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      transition: 'var(--transition-smooth)'
-                    }}
-                    loading="lazy"
-                  />
+            {/* Pictures Grid */}
+            <div className="recognition-grid">
+              {aboutPhotos.map((photo, index) => (
+                <div 
+                  key={photo.id || index}
+                  style={{
+                    backgroundColor: 'var(--color-bg-primary)',
+                    border: '1px solid var(--color-border)',
+                    padding: '1rem',
+                    boxShadow: '0 10px 20px rgba(0,0,0,0.02)',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'var(--transition-smooth)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-6px)';
+                    e.currentTarget.style.boxShadow = '0 15px 30px rgba(28, 25, 23, 0.05)';
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.03)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.02)';
+                    const img = e.currentTarget.querySelector('img');
+                    if (img) img.style.transform = 'scale(1.0)';
+                  }}
+                >
+                  <div style={{ overflow: 'hidden', height: '280px', border: '1px solid var(--color-border)' }}>
+                    <img 
+                      src={getOptimizedUrl(photo.image, 600)} 
+                      alt={photo.title || 'Recognition Ceremony'} 
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'var(--transition-smooth)'
+                      }}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
+                    <span style={{ fontSize: '0.72rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent-contrast)' }}>
+                      Client Felicitation
+                    </span>
+                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: '400', marginTop: '0.25rem', color: 'var(--color-text-primary)' }}>
+                      {photo.title || 'Ceremony Moment'}
+                    </h3>
+                  </div>
                 </div>
-                <div style={{ marginTop: '1.25rem', textAlign: 'center' }}>
-                  <span style={{ fontSize: '0.72rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-accent-contrast)' }}>
-                    Client Felicitation
-                  </span>
-                  <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: '400', marginTop: '0.25rem', color: 'var(--color-text-primary)' }}>
-                    {photo.title || 'Ceremony Moment'}
-                  </h3>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </LazySection>
     </main>
   );
 }
