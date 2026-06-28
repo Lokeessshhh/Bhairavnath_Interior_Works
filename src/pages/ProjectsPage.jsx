@@ -365,6 +365,14 @@ export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [visibleCount, setVisibleCount] = useState(18);
 
+  useEffect(() => {
+    document.title = "Our Work | 2BHK Interior Design in Thane Portfolio";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "View our bento grid of luxury home renovation, modular kitchen, and false ceiling work at Hiranandani Estate & Lodha Amara in Thane West.");
+    }
+  }, []);
+
   // Staggered scroll reveal triggers for Bento items
   useEffect(() => {
     const bentoItems = document.querySelectorAll('.bento-item.eager');
@@ -424,10 +432,10 @@ export default function ProjectsPage() {
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Showcase</span>
           <h1 className="page-title">
-            Spaces We Have Created
+            Thane Home Interior Design Projects
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
-            Browse through our residential carpentry contracts, modular fittings, and commercial turnkey setups across Mumbai.
+            Browse our bento grid of luxury home renovation Thane works, modular kitchen contractor Thane layouts, false ceiling contractor Thane custom ceilings, and custom wardrobes executed across Thane West.
           </p>
           <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '2rem' }} />
         </div>

@@ -26,6 +26,11 @@ export default function TestimonialsPage() {
 
   useEffect(() => {
     fetchReviews();
+    document.title = "Client Reviews | Best Interior Designer in Thane";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Read reviews from homeowners in Hiranandani Estate & Majiwada. Verified feedback for our modular kitchen, wardrobes, and carpentry work in Thane.");
+    }
   }, []);
 
   const handleReviewSubmit = async (e) => {
@@ -70,10 +75,10 @@ export default function TestimonialsPage() {
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Client Feedback</span>
           <h1 className="page-title">
-            Client Reviews & Testimonials
+            Reviews for Best Interior Designer Thane West
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
-            Hear from families and business owners across Mumbai who entrusted Bhairavnath Interior Works with their spaces.
+            Hear from families who chose our carpentry services Thane Mumbai contracts, modular kitchen contractor Thane installations, and full home renovation Thane West executions.
           </p>
           <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '2rem' }} />
         </div>
@@ -86,7 +91,7 @@ export default function TestimonialsPage() {
             {/* Left: Reviews Wall */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: '400', marginBottom: '1rem' }}>
-                Verified Handover Stories
+                Verified Handover Stories in Thane Top Societies
               </h2>
 
               {/* Approved Reviews List */}
@@ -201,7 +206,7 @@ export default function TestimonialsPage() {
               {!isSubmitted ? (
                 <form onSubmit={handleReviewSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: '400', marginBottom: '0.25rem' }}>
-                    Share Your Experience
+                    Share Your Thane & Mumbai Interior Design Experience
                   </h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-secondary)', marginBottom: '1rem', lineHeight: '1.5' }}>
                     Submit a review below to publish it directly on the wall and the homepage slider.

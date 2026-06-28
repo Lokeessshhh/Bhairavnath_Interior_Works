@@ -8,15 +8,15 @@ export default function Hero() {
       <div className="container grid-split-2">
         {/* Left: Content Block */}
         <div className="hero-content">
-          <span className="section-tag">Premium Interior Studio</span>
+          <span className="section-tag">Best Interior Designer Thane West</span>
           
           <h1 className="hero-title">
-            Designing Spaces <br />
-            That Inspire <span>Living</span>
+            Best Interior Designer <br />
+            in Thane & Mumbai
           </h1>
 
           <p className="hero-description">
-            We craft exceptional, warm-minimalist interiors that blend functionality and premium aesthetics. Every space is curated with natural textures, balanced proportions, and a focus on timeless beauty.
+            We craft exceptional, warm-minimalist spaces. As a leading turnkey interior contractor in Thane, we specialize in modular kitchen contractor Thane setups, false ceiling contractor Thane installations, custom wardrobes, and high-quality home renovation Thane projects.
           </p>
 
           <div className="hero-buttons">
@@ -55,7 +55,7 @@ export default function Hero() {
               <source media="(max-width: 768px)" srcSet="/assets/hero_mobile.webp" />
               <img 
                 src="/assets/hero_desktop.webp" 
-                alt="Warm minimalist luxury living room" 
+                alt="Turnkey home renovation Thane - living room design by Bhairavnath Interiors" 
                 className="hero-img"
                 fetchpriority="high"
                 width="1200"

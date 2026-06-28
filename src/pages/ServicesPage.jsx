@@ -39,26 +39,31 @@ export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState('residential');
   const [openFaq, setOpenFaq] = useState(null);
 
+  useEffect(() => {
+    document.title = "Interior Design & Modular Kitchen Services in Thane";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Our interior design services in Thane include modular kitchen installation, POP false ceiling, sliding wardrobe design, carpentry, and home renovation.");
+    }
+  }, []);
+
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
   const residentialServices = [
-    { title: 'Flats (1BHK / 2BHK / 3BHK)', description: 'Optimized spatial zoning, smart modular wardrobes, compact BWR modular kitchens, false ceilings, and custom space partitions.' },
-    { title: 'Big Flats & Duplexes', description: 'Double-height false ceilings, main entrance teak wood doors, veneer wall paneling, and custom modular dining layouts.' },
-    { title: 'Bungalows & Villas', description: 'Full-scale structural timber cladding, customized walk-in closets, bespoke premium modular layouts, and heavy hardwood joinery.' },
-    { title: 'Farmhouses', description: 'Natural textured rustic finishes, solid timber roof rafters, wood decking, and organic partition dividers.' },
-    { title: 'Apartment Societies', description: 'Society common entry lobbies, modular security desks, custom society offices, and common area seating.' }
+    { title: '1BHK / 2BHK / 3BHK Flat Interior Price Thane', description: 'We offer customizable 1BHK and 2BHK interior design Thane budget layouts featuring modular wardrobes, BWR modular kitchens, and false ceilings.' },
+    { title: 'Modular Kitchen Contractor Thane', description: 'Expert design and installation of L-shaped, U-shaped, and parallel modular kitchens in Thane, featuring acrylic and PU finishes with German hardware.' },
+    { title: 'POP & Gypsum False Ceiling Contractor Thane', description: 'Suspended false ceiling design living room Thane setups with profile lights, cove lighting, and magnetic track light installations.' },
+    { title: 'Custom Wardrobes & Carpentry Work Thane', description: 'Wardrobe designer Thane services for custom wardrobes, modular sliding wardrobes, TV unit design, and pooja unit combinations.' },
+    { title: 'Home Renovation Contractor Thane', description: 'Turnkey interior contractor Thane solutions for complete old flat renovation, resale flat makeovers, and bareshell home interior execution.' }
   ];
 
   const commercialServices = [
-    { title: 'Shops & Retail Stores', description: 'Heavy-duty modular display racks, glass checkout counters, checkout cashier desks, and branded accent lighting panels.' },
-    { title: 'Showrooms', description: 'Spotlight ceiling structures, modular experience booths, glass divider partitions, and premium veneer backdrop panels.' },
-    { title: 'Offices', description: 'Ergonomic conference tables, modular workspaces, acoustic drywall dividers, file shelving, and executive desks.' },
-    { title: 'Restaurants & Cafes', description: 'Commercial kitchen counters, custom booth bench seating, bar counter trims, and custom-fabricated dining tables.' },
-    { title: 'Salons & Clinics', description: 'Hygienic easy-clean countertops, mirror drawers, clinic cabin dividers, and client reception desks.' },
-    { title: 'Gyms & Schools', description: 'Locker systems, administration desks, student classroom benches, rubber flooring margins, and dry-wall dividers.' },
-    { title: 'Small Malls & Complexes', description: 'Commercial restroom cabinetry, walkway modular planters, divider screens, and customized kiosk stands.' }
+    { title: 'Office Interior Designer Thane', description: 'Turnkey office interior Thane layouts featuring ergonomic modular workspaces, conference tables, and executive desks.' },
+    { title: 'Office Interior Designer Navi Mumbai', description: 'Corporate interior designer solutions for commercial spaces, retail stores, showrooms, and cafeterias across Navi Mumbai.' },
+    { title: 'Bareshell Office Interior Thane', description: 'Turnkey fit-outs for new commercial complexes, including dry-wall partitions, suspended ceilings, and electrical cabling.' },
+    { title: 'Showroom & Shop Interior Designer Thane', description: 'Branded experience display racks, mirror drawers, reception desks, and lighting solutions to maximize retail engagement.' }
   ];
 
   const materialsList = [
@@ -91,10 +96,10 @@ export default function ServicesPage() {
   ];
 
   const faqs = [
-    { q: 'How do you ensure the long-term durability of modular cabinets?', a: 'We focus on lifetime care support rather than marketing warranties. Because we build with genuine BWP/BWR Marine Plywood and authentic German hardware from Hettich and Blum, our modular woodwork is built to last decades. If you ever face an alignment issue, a drawer rattle, or door creak down the line, we are just a call away.' },
-    { q: 'Which plywood should I use for a kitchen in Mumbai?', a: 'We strictly recommend and use Boiling Water Proof (BWP) Marine Plywood conforming to IS 710 specifications for kitchens in Mumbai to withstand the high humidity and direct contact with water without swelling or peeling.' },
-    { q: 'Can we inspect the materials before execution begins?', a: 'Absolutely. We practice 100% material transparency. We show you the branded plywood stamps on site and provide genuine hardware invoices from Hettich, Blum, or Hafele.' },
-    { q: 'What are your execution timelines for a typical home?', a: 'We believe in honest, transparent timelines rather than rushed promises. While a typical 2BHK flat takes around 50 to 60 days of carpentry and onsite assembly, we never rush the curing of paint or the alignment of hardware to meet a marketing deadline. We keep you updated daily on WhatsApp with photos so you know exactly where work stands.' }
+    { q: 'What is the modular kitchen cost in Thane 2026?', a: 'The modular kitchen cost in Thane 2026 varies depending on the layout (L-shaped, U-shaped, parallel) and materials (acrylic, laminate, PU). On average, prices range from ₹1,200 to ₹2,500 per sq ft. We use high-quality BWR plywood and German hardware to ensure longevity.' },
+    { q: 'How does a false ceiling rate Thane per sq ft vary?', a: 'Our gypsum false ceiling rate starts from ₹65 per sq ft. Custom POP ceilings with profile lights or cove lighting configurations may cost slightly higher depending on the complexity of the design.' },
+    { q: 'How do you choose the best false ceiling material for Mumbai humidity?', a: 'Given Mumbai\'s high humidity, moisture-resistant gypsum boards are generally the best false ceiling material. They prevent sagging and damp spots compared to standard commercial plaster boards.' },
+    { q: 'What is a typical 2BHK interior design cost Thane budget?', a: 'A standard 2BHK interior design cost in Thane ranges from ₹3.5 Lakhs to ₹7 Lakhs for carpentry, wardrobes, and basic modular kitchen renovation, depending on material specifications.' }
   ];
 
   return (
@@ -104,10 +109,10 @@ export default function ServicesPage() {
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">What We Offer</span>
           <h1 className="page-title">
-            Services & Property Specialties
+            Turnkey Interior Contractor & Modular Kitchen in Thane
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
-            Bespoke cabinetry, space planning, modular setups, and execution standards for Mumbai residences and commercial projects.
+            Complete home renovation contractor Thane services including modular wardrobe setups, gypsum POP false ceilings, custom carpentry work, and turnkey office interior design.
           </p>
           <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '2rem' }} />
         </div>

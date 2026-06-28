@@ -43,6 +43,14 @@ const getOptimizedUrl = (url, width = 600) => {
 };
 
 export default function About() {
+  useEffect(() => {
+    document.title = "About Bhairavnath Interiors | Turnkey Interior Contractor";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Learn about Bhairavnath Interiors, a trusted interior designer in Thane West. Over 20+ years of carpentry, custom wardrobe, and home renovation services.");
+    }
+  }, []);
+
   return (
     <main style={{ paddingTop: 'calc(var(--header-height) + 2rem)', backgroundColor: 'var(--color-bg-primary)' }}>
       {/* Editorial Header */}
@@ -50,7 +58,7 @@ export default function About() {
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Our Heritage</span>
           <h1 className="page-title" style={{ maxWidth: '800px' }}>
-            The Story of Roshanlal Lohar & <br />Bhairavnath Interior Works
+            The Story of Roshanlal Lohar & <br />Bhairavnath Interiors in Thane
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
             Humble origins, 20+ years of hands-on mastery, and a self-made craftsman's dedication to home execution in Mumbai.
@@ -108,7 +116,7 @@ export default function About() {
                   marginBottom: '2rem' 
                 }}
               >
-                By the early 2000s, Roshanlal had established himself as a trusted name. Known across Dadar and central Mumbai for his honest pricing, punctuality, and zero-compromise timber quality, he founded **Bhairavnath Interior Works**. Today, with over 20+ years of experience, he still visits sites daily to ensure every joint and edge is cut to perfection.
+                By the early 2000s, Roshanlal had established himself as a trusted name. Known across Thane, Dadar, and central Mumbai for his honest pricing, punctuality, and zero-compromise timber quality, he founded **Bhairavnath Interior Works**. Today, as an experienced interior designer in Thane Ghodbunder Road and provider of trusted carpentry service Thane Mumbai, he still visits sites daily to ensure every joint and edge is cut to perfection.
               </p>
 
               {/* Highlight Quote */}

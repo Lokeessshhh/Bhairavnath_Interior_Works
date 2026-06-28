@@ -2,73 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.bhairavnathinteriors.in</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.bhairavnathinteriors.in/about</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.bhairavnathinteriors.in/services</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.bhairavnathinteriors.in/projects</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.bhairavnathinteriors.in/process</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bhairavnathinteriors.in/testimonials</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.bhairavnathinteriors.in/blog</loc>
-    <lastmod>2026-06-22</lastmod>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/festive-decor-hacks</loc>
-    <lastmod>2026-06-22</lastmod>
+    <loc>https://www.bhairavnathinteriors.in/blog/ghar-renovate-karna-mumbai-thane</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/countertop-choices</loc>
-    <lastmod>2026-06-22</lastmod>
+    <loc>https://www.bhairavnathinteriors.in/blog/thane-modular-kitchen-rate-hinglish</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/vastu-layouts</loc>
-    <lastmod>2026-06-22</lastmod>
+    <loc>https://www.bhairavnathinteriors.in/blog/interior-designer-lodha-amara</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/space-saving-mumbai</loc>
-    <lastmod>2026-06-22</lastmod>
+    <loc>https://www.bhairavnathinteriors.in/blog/modular-kitchen-navi-mumbai</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.bhairavnathinteriors.in/blog/monsoon-proofing</loc>
-    <lastmod>2026-06-22</lastmod>
+    <loc>https://www.bhairavnathinteriors.in/blog/2bhk-interior-kalyan-budget</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/wardrobe-design-price-thane</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/false-ceiling-rate-sqft-thane</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/office-interior-cost-thane</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/vastu-interior-design-thane</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/home-renovation-hiranandani-estate</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/2bhk-interior-design-thane-budget</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/gypsum-vs-pop-ceiling-thane</loc>
+    <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.bhairavnathinteriors.in/blog/modular-kitchen-cost-thane</loc>
+    <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

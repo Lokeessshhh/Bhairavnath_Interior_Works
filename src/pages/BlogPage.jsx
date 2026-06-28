@@ -72,6 +72,11 @@ export default function BlogPage() {
 
   useEffect(() => {
     fetchArticles();
+    document.title = "Mumbai Interior Insights & Vastu Tips | Blog";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Read modular kitchen cost in Thane 2026, false ceiling rates per sq ft, vastu interior tips, and space saving ideas for Mumbai apartments.");
+    }
   }, []);
 
   const handleAdminPublish = async (e) => {
@@ -198,10 +203,10 @@ export default function BlogPage() {
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">Nesta Journal</span>
           <h1 className="page-title">
-            Mumbai Interior Insights
+            Mumbai & Thane Interior Design Blog
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
-            Material guides, space-saving layout tips, and wood conservation practices for Mumbai homeowners.
+            Explore expert guides on modular kitchen cost in Thane 2026, false ceiling rates per sq ft Thane, and vastu compliant interior design Thane tips for new flats.
           </p>
           <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '2rem' }} />
         </div>

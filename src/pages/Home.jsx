@@ -49,6 +49,14 @@ function LazySection({ children, height = '400px', className = '' }) {
 }
 
 export default function Home() {
+  useEffect(() => {
+    document.title = "Interior Designer in Thane | Bhairavnath Interiors";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "Turnkey interior designer in Thane West. Expert home renovation, modular kitchen, and false ceiling contractor in Thane & Mumbai. Get a free quote!");
+    }
+  }, []);
+
   return (
     <main>
       <Hero />

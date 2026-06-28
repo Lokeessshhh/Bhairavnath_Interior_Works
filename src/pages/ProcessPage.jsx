@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Calendar, Layers, Eye, Cpu, Send, ShieldCheck, Check } from 'lucide-react';
 
 export default function ProcessPage() {
+  useEffect(() => {
+    document.title = "Our Work Process | Turnkey Interior Contractor Thane";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", "How we work: from site design consultation to workshop carpentry execution and handover. Trusted interior designer on Ghodbunder Road, Thane West.");
+    }
+  }, []);
+
   const steps = [
     {
       icon: <Calendar size={24} />,
       number: '01',
-      title: 'Consultation & Site Meeting',
+      title: 'Consultation & Site Meeting near Thane',
       description: 'We host a thorough discovery meeting to discuss layout goals, and conduct a detailed physical site visit to inspect dimensions, dampness, and structural spaces.'
     },
     {
       icon: <Layers size={24} />,
       number: '02',
-      title: 'Concept & Moodboard',
+      title: 'Concept & Moodboard Design',
       description: 'We develop spatial layout options and compile tactile boards featuring wood types, sand plasters, and fabrics to define the overall aesthetic direction.'
     },
     {
@@ -24,7 +32,7 @@ export default function ProcessPage() {
     {
       icon: <Cpu size={24} />,
       number: '04',
-      title: 'Bespoke Workshop Fabrication',
+      title: 'Bespoke Carpentry Work & Fabrication',
       description: 'Carcasses, doors, and partition units are cut, routed, and edge-sealed at our workshop using high-quality BWR marine plywood and genuine hardware.'
     },
     {
@@ -59,10 +67,10 @@ export default function ProcessPage() {
         <div className="container" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <span className="section-tag">How We Work</span>
           <h1 className="page-title">
-            Our Work Process
+            Our Turnkey Interior Design Process
           </h1>
           <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.15rem', maxWidth: '600px', lineHeight: '1.6' }}>
-            From the first site inspection to material styling and turnkey execution, we follow a transparent, organized workflow.
+            From custom wardrobe design consultation on Ghodbunder Road to workshop carpentry work in Majiwada, we follow a transparent modular kitchen and home renovation process.
           </p>
           <div style={{ width: '50px', height: '1px', backgroundColor: 'var(--color-accent)', marginTop: '2rem' }} />
         </div>

@@ -36,6 +36,16 @@ export default function BlogPostPage() {
     fetchArticleDetails();
   }, [id]);
 
+  useEffect(() => {
+    if (article) {
+      document.title = `${article.title} | Bhairavnath Interiors`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute("content", article.description || "Read articles and guides on interior design and modular carpentry on Bhairavnath Interiors blog.");
+      }
+    }
+  }, [article]);
+
   // Simple Markdown Parser utility for content lines
   const parseMarkdown = (text) => {
     if (!text) return null;
