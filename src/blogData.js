@@ -64,7 +64,7 @@ export const initialArticles = [
     category: 'Material Curation',
     title: 'How to Design a Modern Modular Kitchen in Navi Mumbai',
     description: 'Planning a kitchen remodel? Learn how to choose the right materials and layouts for modular kitchen Navi Mumbai setups, from Kharghar to Vashi.',
-    image: 'https://images.unsplash.com/photo-1556911220-115f6d2bb40f?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800',
     readTime: '4 min read',
     content: `
       Designing a kitchen in Navi Mumbai requires balancing style with humidity protection. Whether you reside in Kharghar, Vashi, or Seawoods, a well-planned modular kitchen Navi Mumbai setup is crucial for everyday Indian cooking.
@@ -104,7 +104,7 @@ export const initialArticles = [
     category: 'Material Curation',
     title: 'Custom Wardrobe Design & Price Guide in Thane',
     description: 'Learn about wardrobe design price Thane variations, comparing materials, layout types like sliding wardrobes, and walk-in closets.',
-    image: 'https://images.unsplash.com/photo-1558882224-cca166733360?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800',
     readTime: '5 min read',
     content: `
       Wardrobes are key storage assets in any Mumbai home. If you are planning to hire a wardrobe designer Thane specialist, understanding material grades, sliding accessories, and wardrobe design price Thane parameters is essential.
